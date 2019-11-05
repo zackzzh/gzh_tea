@@ -1,0 +1,74 @@
+html {
+    flex           : 1;
+    justify-content: center;
+    align-items    : center;
+    background     : #F7F7F7;
+    min-height     : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        // height: calc(100vh);
+        position : relative;
+
+        .comment_list {
+            background   : #fff;
+            padding      : .773333rem .746667rem .453333rem .746667rem;
+            border-radius: .213333rem;
+
+            .comment_list_button {
+                display        : flex;
+                justify-content: center;
+
+                .van-button {
+                    height     : 1.066667rem;
+                    line-height: 1.066667rem;
+                    border     : 1px solid #999;
+                    background : transparent;
+                    font-size  : .4rem;
+                    font-family: PingFang SC;
+                    font-weight: 500;
+                    color      : #333;
+                }
+            }
+
+            .comment_list_item {
+                margin-bottom: .266667rem;
+                border-bottom: 1px solid #e5e5e5;
+
+            }
+
+            .comment_list_title {
+                color      : #000;
+                font-weight: bold;
+                font-size  : .4rem;
+
+                &:before {
+                    position: relative;
+                    content : "";
+                    top     : 0;
+                    left    : 0;
+                    height  : 100%;
+                    width   : 0%;
+                    border  : 2px solid red;
+                }
+            }
+
+            .comment_list_item_top {
+                display    : flex;
+                align-items: center;
+            }
+
+            .comnent_list_item_time,
+            .comnent_list_item_bottom {
+                margin-top: 10px;
+            }
+
+            .comnent_list_item_bottom {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

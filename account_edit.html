@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-绑定手机号</title>
+    <link rel="stylesheet" href="./css/account/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" 　v-cloak>
+        <van-nav-bar title="绑定手机号" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <van-cell-group class="input_group">
+            <van-field type="tel" label="手机号" placeholder="请输入手机号" required></van-field>
+            <van-field type="number" label="验证码" placeholder="请输入验证码" required>
+                <van-button class="input_code" slot="button" size="small" type="primary">发送验证码</van-button>
+            </van-field>
+        </van-cell-group>
+        <div class="bound_div">
+            <van-button class="bound_btn" type="primary" @click="onBound">立即绑定</van-button>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/account/index.js"></script>
+</body>
+
+</html>

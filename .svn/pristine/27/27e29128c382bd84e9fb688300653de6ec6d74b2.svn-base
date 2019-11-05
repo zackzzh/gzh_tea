@@ -1,0 +1,327 @@
+const $myAPi = {
+    //获取设计行业
+    industrys: (params) => {
+        // console.log("发送的数据", params)
+        return request({
+            url: 'devise/industrys',
+            // data: params,
+            method: 'get'
+        })
+    },
+    //获取设计类型
+    types: (params) => {
+        // console.log("发送的数据", params)
+        return request({
+            url: 'devise/types',
+            // data: params,
+            method: 'get'
+        })
+    },
+    //获取首页基本信息
+    index: (params) => {
+        // console.log("发送的数据", params)
+        return request({
+            url: 'index',
+            // data: params,
+            method: 'get'
+        })
+    },
+    //获取商品接口
+    goods: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'goods/' + params,
+            // data: params,
+            method: 'get'
+        })
+    },
+    //获取商品接口
+    cartAdd: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'cart/add',
+            data: params,
+            method: 'POST'
+        })
+    },
+    //获取购物车列表接口
+    carts: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'carts',
+            // data: params,
+            method: 'get'
+        })
+    },
+    //删除购物车指定商品
+    cartdelete: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'cart/delete/' + params,
+            // data: params,
+            method: 'DELETE'
+        })
+    },
+    //半定制商品接口
+    semi_customs: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'semi_customs?',
+            params: params,
+            method: 'get'
+        })
+    },
+    //半定制商品详情接口
+    semi_customs_detail: (params) => {
+        console.log("发送的数据", params)
+        return request({
+            url: 'semi_customs_detail/' + params.id,
+            // params: params,
+            method: 'get'
+        })
+    },
+    //订单预览
+    generate(params) {
+        return request({
+            url: 'order/generate',
+            data: params,
+            method: 'POST'
+        })
+    },
+    //订单预览
+    create(params) {
+        return request({
+            url: 'order/create',
+            data: params,
+            method: 'POST'
+        })
+    },
+    //订单列表
+    orders(params) {
+        return request({
+            url: 'orders',
+            params: params,
+            method: 'get'
+        })
+    },
+    //获取设计产品列表
+    products(params) {
+        return request({
+            url: 'devise/products',
+            params: params,
+            method: 'get'
+        })
+    },
+    //保存设计信息
+    save(params) {
+        return request({
+            url: 'devise/save',
+            data: params,
+            method: 'post'
+        })
+    },
+    //获取设计风格
+    styles(params) {
+        return request({
+            url: 'devise/styles',
+            params: params,
+            method: 'get'
+        })
+    },
+    //订单详情
+    orderdetail(params) {
+        return request({
+            url: 'order/detail/' + params,
+            // params: params,
+            method: 'get'
+        })
+    },
+    //纯定制商品详情
+    devisedetail(params) {
+        return request({
+            url: 'devise/detail/' + params,
+            // params: params,
+            method: 'get'
+        })
+    },
+    //发票信息保存
+    invoice_save(params) {
+        return request({
+            url: 'invoice/save',
+            data: params,
+            method: 'POST'
+        })
+    },
+    //发票信息列表
+    invoices(params) {
+        return request({
+            url: 'invoices',
+            params: params,
+            method: 'get'
+        })
+    },
+    //发票信息列表
+    order_update(params) {
+        return request({
+            url: 'order/update/' + params.order_number,
+            data: params,
+            method: 'post'
+        })
+    },
+    //微信分享配置
+    config(params) {
+        return request({
+            url: 'weixin/share/config',
+            params: params,
+            method: 'get'
+        })
+    },
+    // 获取半定制容器属性接口
+    containeAttr: (params) => {
+        // console.log("params", params);
+        return request({
+            url: "container_attr/" + params.container_id,
+            params: params,
+            method: 'get'
+        })
+    },
+    // 获取半定制容器属性接口
+    /** params
+     *    unique_key[可选]用户唯一标识
+	      share_type[可选]分享类型默认0
+     */
+    sharingRecords: (params) => {
+        // console.log("params", params);
+        return request({
+            url: "sharing/records",
+            data: params,
+            method: 'post'
+        })
+    },
+    /**
+     * 文章列表
+     * page_size	[可选]页面显示条数
+       now_page		[可选]当前页面
+	   title		[可选]文章标题
+     */
+    articles: (params) => {
+        return request({
+            url: "articles",
+            params: params,
+            method: 'get'
+        })
+    },
+    //文章详情
+    /**
+     * 
+     */
+    article_detail: (id) => {
+        return request({
+            url: "article/" + id,
+            method: 'get'
+        })
+    },
+    //
+    /**
+     * 订单收货
+     */
+    confirm_receipt: (id) => {
+        return request({
+            url: "order/confirm_receipt/" + id,
+            method: 'put'
+        })
+    },
+    /**
+     * 订单确认评价
+     */
+    comment: (order_number, params) => {
+        return request({
+            url: 'order/comment/' + order_number,
+            data: params,
+            method: 'post'
+        })
+    },
+    /**
+     * 订单签约
+     */
+    order_signing: (order_number, params) => {
+        return request({
+            url: 'order/signing/' + order_number,
+            data: params,
+            method: 'post'
+        })
+    },
+    devise_index: () => {
+        return request({
+            url: 'devise/index/',
+            method: 'get'
+        })
+    },
+    //设计订单生成普通订单
+    design_generate_order(params) {
+        return request({
+            url: 'order/design_generate_order/' + params.order_number,
+            data: params,
+            method: 'post'
+        })
+    },
+    //订单设计确认操作
+    change_design_state(params) {
+        return request({
+            url: 'order/change_design_state/' + params.order_number,
+            data: params,
+            method: 'post'
+        })
+    },
+    //获取商品评论信息:type:0普通商品，1设计商品，2半定制商品
+    comment_list(params) {
+        return request({
+            url: 'comment/' + params.goods_id + '/' + params.type,
+            method: 'get'
+        })
+    },
+    //佣金提现申请接口
+    withdrawal_apply(params) {
+        return request({
+            url: 'withdrawal/apply',
+            data: params,
+            method: 'post'
+        })
+    },
+    //佣金提现申请列表
+    withdrawals(params) {
+        return request({
+            url: 'withdrawals',
+            params: params,
+            method: 'get'
+        })
+    },
+    //佣金提现申请列表
+    order_refund(order_number) {
+        return request({
+            url: 'order/refund/' + order_number,
+            method: 'put'
+        })
+    },
+    //获取运费接口
+    freight() {
+        return request({
+            url: 'freight',
+            method: 'get'
+        })
+    },
+    //积分记录获取
+    integral_list() {
+        return request({
+            url: 'integral_list',
+            method: 'get'
+        })
+    },
+    //佣金记录获取
+    commission_list() {
+        return request({
+            url: 'commission_list',
+            method: 'get'
+        })
+    },
+}

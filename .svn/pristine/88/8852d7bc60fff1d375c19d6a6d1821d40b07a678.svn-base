@@ -1,0 +1,173 @@
+html {
+    flex              : 1;
+    justify-content   : center;
+    align-items       : center;
+    background        : #F7F7F7 !important;
+    // min-height     : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        position: relative;
+
+        .item-button {
+            display        : flex;
+            justify-content: flex-end;
+            padding        : 0px 10px;
+
+            border-top: 1px solid #e5e5e5;
+
+            .van-button {
+                margin     : 10px 0px;
+                height     : 30px;
+                line-height: 30px;
+            }
+        }
+
+        .order-detail-top {
+            background: #007D7B;
+            color     : #fff;
+            padding   : .266667rem;
+
+            .top-title {
+                font-size: .426667rem;
+
+                .van-icon-description {
+                    font-size: .533333rem;
+                    position : relative;
+                    top      : 4px;
+                }
+            }
+        }
+
+        .order-detail-address {
+            margin: .266667rem 0px;
+        }
+
+        .order-detail-info {
+            margin: .266667rem 0px;
+        }
+
+        .commodity_card {
+            margin-top      : 0;
+            padding         : .346667rem .266667rem;
+            border-radius   : .133333rem;
+            background      : #FFFFFF;
+            // box-shadow   : 0 0 .466667rem 0 rgba(18, 46, 116, 0.1);
+            border-bottom   : 1px solid #f7f7f7;
+
+            .van-card__num {
+                text-align: right;
+            }
+
+            .van-card__title {
+                font-family: PingFang SC;
+                font-size  : .373333rem;
+                font-weight: 500;
+                color      : #007D7B;
+            }
+
+            .commodity_img {
+                border: 1px solid #EEEEEE;
+            }
+
+            .commodity_price_fun() {
+                margin-top: .533333rem;
+            }
+
+            .commodity_price {
+                .commodity_price_fun;
+                font-size: .32rem;
+                color    : #007D7B;
+            }
+
+            .commodity_totalPrices {
+                .commodity_price_fun;
+                font-family: PingFang SC;
+                font-size  : .426667rem;
+                font-weight: 500;
+                color      : #007D7B;
+            }
+
+            .commodity_number {
+                font-size: .32rem;
+                color    : #007D7B;
+            }
+        }
+
+        .van-dialog__header {
+            margin-bottom: 25px;
+        }
+
+        .detail-upload {
+            display   : flex;
+            background: #fff;
+            margin    : 10px 0px;
+            padding   : 10px;
+
+            .upload_img_div {
+                width: 4.266667rem;
+            }
+
+            .upload-right {
+                width: 8rem;
+            }
+        }
+
+        .order-detail-total {
+            padding   : 10px;
+            text-align: right;
+            font-size : 16px;
+            background: #fff;
+
+            span {
+                color: red;
+            }
+        }
+
+        .order-detail-design {
+            background: #fff;
+            margin    : 10px 0;
+            padding   : 10px;
+        }
+
+
+
+        .pay_btn_row {
+            position  : fixed;
+            bottom    : 0;
+            left      : 0;
+            right     : 0;
+            text-align: center;
+            background: #74B6B5;
+
+            .pay_total {
+                font-family: PingFang SC;
+                font-size  : .4rem;
+                font-weight: 500;
+                color      : #ffffff;
+
+                span {
+                    color: #007D7B;
+                }
+            }
+
+
+
+            .pay_btn_col {
+                .pay_btn {
+                    width      : 100%;
+                    height     : auto;
+                    line-height: .4rem;
+                    padding    : .4rem 0;
+                    font-size  : .4rem;
+                    font-weight: 500;
+                    border     : none;
+                    background : #007D7B;
+                }
+            }
+        }
+    }
+}

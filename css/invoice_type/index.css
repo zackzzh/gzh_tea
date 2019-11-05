@@ -1,0 +1,42 @@
+html {
+  background: #f4f4f4;
+  align-items: center;
+  flex: 1;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  padding-bottom: .666667rem;
+  margin: 0px !important;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 10px;
+  margin: .666667rem;
+}
+html .main_div .main_div_main {
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+html .main_div .title {
+  font-size: .32rem;
+  width: 1.6rem;
+  text-align: center;
+}
+html .main_div .van-radio-group {
+  width: 100%;
+}
+html .main_div .main_div_button {
+  margin: 0px 10px;
+}
+html .main_div .van-button {
+  margin: 0px 10px;
+  margin-top: .533333rem;
+  width: 100%;
+}
+html .main_div .dialog_radio {
+  display: flex;
+  justify-content: center;
+}

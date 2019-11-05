@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小批量定制</title>
+    <link rel="stylesheet" href="./css/custom_detail/custom_detail.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" v-cloak>
+        <van-nav-bar :title="goodsInfo.goods_name" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <!-- 轮播 -->
+        <van-swipe :autoplay="3000">
+            <van-swipe-item v-for="(image, index) in goodsInfo.show_pictures" :key="index">
+                <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL+image" />
+            </van-swipe-item>
+        </van-swipe>
+        <div class="main_div">
+            <div class="custom-detail">
+                <div class="detail-title">
+                    产品信息
+                </div>
+                <div class="detail-product">
+                    <span class="detail-span">产品名称：</span>{{goodsInfo.goods_name}}&nbsp; &nbsp;
+                    <span class="detail-span">容量：</span>{{goodsInfo.capacity}}
+                </div>
+                <div class="detail-product">
+                    <span class="detail-span">材质：</span>
+                    <span v-for="(item,index) in goodsInfo.materials"
+                        style="display: inline-block; border:1px solid #007D7B; border-radius: 6px; margin-right:6px; padding:5px 5px; margin-bottom: 5px;">{{item}}</span>
+                </div>
+                <div class="detail-product">
+                    &nbsp;<span class="detail-span">件数：</span> <span
+                        v-if="goodsInfo.packing_number">{{goodsInfo.packing_number}}</span> <span v-else>空</span>
+                </div>
+                <div class="detail-product">
+                    &nbsp;<span class="detail-span">生产周期：</span> {{goodsInfo.production_cycle}}
+                </div>
+                <div class="detail-product">
+                    <span class="detail-span">盒型外尺寸：</span>
+                    长：{{goodsInfo.goods_long}} 宽：{{goodsInfo.goods_wide}} 高：{{goodsInfo.goods_high}}
+                </div>
+                <div class="box_type_color" v-if="goodsInfo && goodsInfo.color_list && goodsInfo.color_list.length>0">
+                    颜色选择
+                    <span @click="handleColors1(d,index)" v-for="(d,index) in goodsInfo.color_list" :key="index"
+                        class="box_type_color_span" :class="{'box_type_color_active':d.id == colorId}">{{d.name}}
+                    </span>
+                </div>
+                <div v-html="goodsInfo.goods_details" class="container_info"></div>
+            </div>
+
+            <div class="custom-detail">
+                <div class="detail-title">
+                    选择定制工艺
+                </div>
+                <div>
+                    <div v-for="(item,index) in news_content" :key="index" class="detail-upload">
+                        <div v-if="item.sku.length>0">
+                            <van-checkbox v-model="item.selected" @click="selected(item,index)">
+                            </van-checkbox>
+                            <div style="display: flex">
+                                <div class="upload_img_div">
+                                    <div class="upload_title">{{item.container_name}}</div>
+                                    <!-- <van-image-preview v-model="show" :images="images"
+                                        v-if="sku_value[index].cover_image">
+                                    </van-image-preview> -->
+                                    <!-- <van-image-preview v-model="show" :images="item.cover_image">
+                                    </van-image-preview> -->
+                                    <van-image v-if="sku_value[index].cover_image" fit="contain" width="100%"
+                                        height="auto" :src="API_BASE_URL + sku_value[index].cover_image"
+                                        @click="previewImage(sku_value[index])">
+                                    </van-image>
+                                    <van-image v-else fit="contain" width="100%" height="auto"
+                                        :src="API_BASE_URL + item.cover_image" @click="previewImage(item)">
+                                    </van-image>
+                                </div>
+                                <!-- 容器正面 -->
+                                <div class="upload-right">
+                                    <div class="right-content">
+                                        <van-cell v-if="item.attr.surfaces.length>0" class="box_type_classify_cell"
+                                            title="表面处理：" is-link arrow-direction="down"
+                                            :value="surfacesValue[index].name"
+                                            @click="onContainerSurface(item.attr.surfaces,index)">
+                                            <span class="box_type_cell_right_icon iconfont icon-jiantou2"
+                                                slot="right-icon"></span>
+                                        </van-cell>
+
+                                        <van-cell v-if="item.attr.font_styles.length>0" class="box_type_classify_cell"
+                                            title="字体样式：" is-link arrow-direction="down"
+                                            :value="font_stylesValue[index].name"
+                                            @click="onCellStyle(item.attr.font_styles,index)">
+                                            <span class="box_type_cell_right_icon iconfont icon-jiantou2"
+                                                slot="right-icon"></span>
+                                        </van-cell>
+                                        <van-cell v-if="item.attr.font_proportions.length>0"
+                                            class="box_type_classify_cell" title="排版参考：" is-link arrow-direction="down"
+                                            :value="font_proportionsValue[index].name"
+                                            @click="onCellFont(item.attr.font_proportions,index)">
+                                            <span class="box_type_cell_right_icon iconfont icon-jiantou2"
+                                                slot="right-icon"></span>
+                                        </van-cell>
+                                        <div class="box_type_color"
+                                            v-if="sku_value[index] && sku_value[index].colors && sku_value[index].colors.length>0">
+                                            颜色选择
+                                            <span @click="handleColors(d,index)"
+                                                v-for="(d,colorindex) in sku_value[index].colors" :key="colorindex"
+                                                class="box_type_color_span"
+                                                :class="{'box_type_color_active':d.id == formDataNew.colorId[index]}">{{d.name}}
+                                            </span>
+                                        </div>
+                                        <van-field v-model="formDataNew.technology_describe[index]"
+                                            class="upload_Textarea" :value="formDataNew.technology_describe[index]"
+                                            label="工艺文字信息 :" type="textarea" rows="2" autosize
+                                            @input="technology_describe(index)" placeholder="请输入您要加印的内容" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 容器对应数量价格 -->
+                        <div class="custom-detail custom-bottom" v-if="item.sku.length>0">
+                            <van-row>
+                                <van-col span="6" class="bottom-one">加印单价：</van-col>
+                                <van-col span="6" v-for="(item, index) in item.overprints" :key="index">
+                                    ￥{{item.price}}
+                                </van-col>
+                            </van-row>
+                            <van-row v-if="item.overprints && item.overprints.length>0">
+                                <van-col span=" 6" class="bottom-one">加印套量：</van-col>
+                                <van-col span="6" class="bottom-one bottom-small"
+                                    v-for="(item, findex) in item.overprints" :key="index">
+                                    {{item.minQuantity}} <span v-if="item.minQuantity">--</span>
+                                    <span v-else>大于</span>
+                                    {{item.maxQuantity}}PCS</van-col>
+                            </van-row>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="custom-detail"
+                v-if="goodsInfo.packing && goodsInfo.packing.items && goodsInfo.packing.items.length>0">
+                <div class="detail-title">
+                    选择定制工艺(包装正面)
+                </div>
+                <div class="detail-upload" style="display: flex;">
+                    <van-checkbox v-model="formPackData.pack_selected" @click="packselected">
+                    </van-checkbox>
+                    <div class="upload_img_div">
+                        <div class="upload_title">包装正面</div>
+                        <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL+ pack_item.cover_image"
+                            @click="previewImage(pack_item)">
+                        </van-image>
+                    </div>
+                    <div class="upload-right">
+                        <div class="right-content">
+                            <van-cell class="box_type_classify_cell" title="表面处理：" is-link arrow-direction="down"
+                                :value="packSurface.packing_surface_name" @click="onPackSurface">
+                                <span class="box_type_cell_right_icon iconfont icon-jiantou2" slot="right-icon"></span>
+                            </van-cell>
+                            <van-field class="upload_Textarea" :value="formData.packing_technology_describe"
+                                label="工艺文字信息 :" type="textarea" rows="2" autosize
+                                v-model="formData.packing_technology_describe" placeholder="请输入您要加印的内容" />
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="custom-detail custom-bottom">
+                <!-- <van-field v-model="formData.quantity" label="加印数量：" type="number" placeholder="请输入加印数量"
+                    @input="onInput" @blur="onBlur">
+                </van-field> -->
+                <van-cell title="加印数量：" v-if="goodsInfo">
+                    <van-stepper v-model="goodsInfo.min_buy_num" :min="min_buy_num" slot="default"
+                        @change="changeProductNum" @plus="plus" @minus="minus">
+                    </van-stepper>
+                </van-cell>
+                <van-row type="flex" justify="space-between">
+                    <van-col span="12" class="bottom-two">加印总价：</van-col>
+                    <van-col span="12" class="bottom-three">￥
+                        <span v-if="total_price>0">{{total_price}}</span>
+                        <span v-else>0</span>
+                    </van-col>
+                </van-row>
+            </div>
+            <!-- 包装弹窗 -->
+            <!-- <van-action-sheet v-model="isPack" :actions="actionsPack" @select="onPackSelect">
+            </van-action-sheet> -->
+            <!-- 容器,选项，弹窗 -->
+            <van-action-sheet v-model="isContainer" :actions="actionsContainer" @select="onContainerSelect">
+            </van-action-sheet>
+            <van-action-sheet v-model="isShowFont" :actions="actionsFont" @select="onSelectFont"></van-action-sheet>
+            <van-action-sheet v-model="isShowStyle" :actions="actionsStyle" @select="onSelectStyle"></van-action-sheet>
+            <div class="custom-detail comment_list" v-if="comment_list.length> 0">
+                <div class="comment_list_title">
+                    评价{{comment_list.length}}
+                </div>
+                <div class="comment_list_item" v-for="(c,index) in comment_list" :key="index">
+                    <div class="comment_list_item_top" v-if="c.customer">
+                        <van-image fit="contain" width="60px" height="60px" :src="c.customer.head_img" round>
+                        </van-image>
+                        <div style="margin-left: 10px">
+                            <div>{{c.customer.username}}</div>
+                            <van-rate v-model="c.score" color="#F6A70E" void-color="#000000" size="24" readonly="true">
+                            </van-rate>
+                        </div>
+                    </div>
+                    <div class="comnent_list_item_time">
+                        {{c.create_time}}
+                    </div>
+                    <div class="comnent_list_item_bottom">
+                        {{c.content}}
+                    </div>
+                </div>
+                <div class="comment_list_button">
+                    <van-button round type="info" @click="comment_all">查看全部评价</van-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fiveStep-button">
+            <div class="button-right" @click="onPay">去支付 (￥{{total_price}})</div>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/custom_detail/custom_detail.js"></script>
+</body>
+
+</html>

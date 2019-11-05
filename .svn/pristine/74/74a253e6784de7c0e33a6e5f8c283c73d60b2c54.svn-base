@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新闻列表</title>
+    <link rel="stylesheet" href="./css/news_list/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="新闻列表" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="news_list">
+            <van-cell :title="item.title" is-link :value="item.create_time" v-for="(item,index) in news_list"
+                :key="index" @click="handleDetail(item)"></van-cell>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/news_list/index.js"></script>
+</body>
+
+</html>

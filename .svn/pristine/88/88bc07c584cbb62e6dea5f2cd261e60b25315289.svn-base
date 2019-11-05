@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>关于我们</title>
+    <script src="./config/header.js"></script>
+</head>
+<style>
+    p {
+        margin: 10px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="关于我们" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <p>
+            义统包装严格执行ISO9001:2015质量管理体系，拥有强大的设计队伍，大规模生产基地、配备完善金属制品生产线、木制品生产线及纸制品生产设施。义统工贸金属制品厂：集铝制品氧化，金属版印刷，新型模具开发，马口铁印刷.拥有1500m2
+            的生产车间，引进日本最先进的金属板印刷机及国内目前一流的冲压制罐的生产流水线。义统工贸彩盒制品厂：引进德国海德堡四色，日本三菱五色印刷机，全套的彩盒、纸箱生产设备，主要生产彩盒、彩卡、彩箱、纸袋、纸箱、白盒等。义统工贸木艺加工厂：主要生产包装盒、家居装饰、文化办公用品、花园系列木制品类等木制工艺品，有着丰富生产工艺、生产经验、及较高水平生产技术，可根据客户要求生产不同规格、尺寸、材料、颜色的木制工艺礼品。义统工贸创意设计中心：曾获得“华东大奖”金奖及优秀奖，并获得包装协会主办的设计比赛的优秀设计及创意奖项，产品因“新奇美观、富有内涵、经典实用”而得到市场及客户的认可。 
+             
+             广州市义统包装制品有限公司：始终秉承“管理在先，客户至上，质量第一，信誉第一，价格经济”的企业经营理念，我们竭诚为新老客户，提供质量完善的产品及周到的售后服务。坚持“只要您能想到，我们就能做到”为口号，不断创新、开发一系列产品包装。
+        </p>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/about_us/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-列表</title>
+    <link rel="stylesheet" href="./css/custom/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar :title="customTitle" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <!-- 搜索框 -->
+        <van-row class="search_bar_row" type="flex" justify="center" align="center">
+            <!-- <van-col class="search_bar_left" span="2">
+                <span class="iconfont icon-caidan" @click="onSeachLeft"></span>
+            </van-col> -->
+            <van-col span="24">
+                <van-search class="search_bar_input" v-model="searckVal" placeholder="请输入搜索关键词" shape="round"
+                    @search="onSearch" background="transparent">
+                </van-search>
+            </van-col>
+        </van-row>
+        <!-- 筛选 -->
+        <van-row class="filtrate_row" type="flex" justify="center" align="center">
+            <van-col class="filtrate_title" :class="{filtrate_title_active:this.filterNum===0}" span="8">
+                <div class="filtrate_title_text" @click="onFilter(0)">综合</div>
+            </van-col>
+            <van-col class="filtrate_title" :class="{filtrate_title_active:this.filterNum===1}" span="8">
+                <div class="filtrate_title_text" @click="onFilter(1,sales)">销量
+                    <span class="iconfont icon-paixu"></span>
+                </div>
+            </van-col>
+            <van-col class="filtrate_title" :class="{filtrate_title_active:this.filterNum===2}" span="8">
+                <div class="filtrate_title_text" @click="onFilter(2,price)">
+                    价格
+                    <span class="iconfont icon-paixu"></span>
+                </div>
+            </van-col>
+            <van-col class="filtrate_title" :class="{filtrate_title_active:this.filterNum===3}" span="8">
+                <div class="filtrate_title_text" @click="onFilter(3)">
+                    筛选
+                    <span class="iconfont icon-iconfontzhizuobiaozhun023125"></span>
+                </div>
+            </van-col>
+        </van-row>
+        <!-- 筛选弹出层 -->
+        <van-popup class="custom_popup" v-model="isPopup" position="right">
+            <van-icon class="popup_icon" name="cross" size=".533333rem" @click="onClose"></van-icon>
+            <div class="popup_main_div">
+                <div class="popup_title">材质{{listData.materials}}</div>
+                <van-row class="popup_row">
+                    <van-button v-for="(item, index) in listData" :key="index" @click="first(item, index)"
+                        class="popup_btn_item" :class="{'first_active':index == firstIndex}">{{item.name}}</van-button>
+                </van-row>
+            </div>
+            <div class="popup_main_div" v-if="secondData.length>0">
+                <div class="popup_title">一级类目</div>
+                <van-row class="popup_row">
+                    <van-button class="popup_btn_item" type="default" v-for="(item, index) in secondData"
+                        @click="second(item, index)" :key="index" :class="{'second_active':index == secondIndex}">
+                        {{item.name}}</van-button>
+                </van-row>
+            </div>
+            <div class="popup_main_div" v-if="threeData.length>0">
+                <div class="popup_title">二级类目</div>
+                <van-row class="popup_row">
+                    <van-button class="popup_btn_item" type="default" v-for="(item, index) in threeData"
+                        @click="third(item, index)" :key="index" :class="{'third_active':index == thirdIndex}">
+                        {{item.name}}</van-button>
+                </van-row>
+            </div>
+            <div class="popup_main_div">
+                <van-row class="popup_row">
+                    <div class="popup_main_div">
+                        <div class="popup_title">价格区间</div>
+                        <van-row class="popup_row">
+                            <van-cell-group>
+                                <van-field v-model="min_price" placeholder="最低价"></van-field> ———<van-field
+                                    v-model="max_price" placeholder="最高价"></van-field>
+                            </van-cell-group>
+                        </van-row>
+                    </div>
+                </van-row>
+            </div>
+            <div class="popup-button">
+                <van-button type="primary" size="small" @click="reset">重置</van-button>
+                <van-button type="primary" size="mini" @click="confirm">确认</van-button>
+            </div>
+        </van-popup>
+        <!-- 商品卡片 -->
+        <van-row class="card_row">
+            <van-col class="card_col" span=12 v-for="(item, index) in goodsList" :key="index">
+                <div class="card_div" @click="onClick(item)">
+                    <van-image fit="contain" width="100%" height="auto" :src="item.cover_image"></van-image>
+                    <div class="card_title">{{item.goods_name}}</div>
+                    <!-- <van-row class="card_title_row" type="flex" align="bottom">
+                        <van-col class="card_title_col" span="12">
+                            <div>
+                                起订量：{{}}套
+                            </div>
+                            <div>
+                                容量：250克
+                            </div>
+                            <div>
+                                材质：罐体生铁
+                            </div>
+                        </van-col>
+                        <van-col class="card_title_col" span="12">
+                            <div>
+                                规格：2个装
+                            </div>
+                            <div>
+                                包装：纸盒
+                            </div>
+                        </van-col>
+                    </van-row> -->
+                    <van-row type="flex" class="price_row">
+                        <van-col class="price_col" span="24">
+                            销量：{{item.sales_num}}
+                        </van-col>
+                    </van-row>
+                    <van-row class="price_row" type="flex" align="center">
+                        <van-col class="price_col" span="14">
+                            {{item.price}}<span>元/套</span>
+                        </van-col>
+                        <van-col class="price_btn_col" span="10">
+                            <van-button class="price_btn" type="primary" @click.stop="onClick(item)">立即订制</van-button>
+                        </van-col>
+                    </van-row>
+                </div>
+            </van-col>
+        </van-row>
+        <!-- <div class="cassette_title">卡盒</div> -->
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/custom/index.js"></script>
+</body>
+
+</html>

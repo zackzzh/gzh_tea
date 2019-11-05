@@ -1,0 +1,94 @@
+body {
+  flex: 1;
+  align-items: center;
+  min-height: calc(100vh);
+  background: #f7f7f7;
+}
+body .van-tabs__line {
+  background-color: #007D7B;
+}
+body [v-cloak] {
+  display: none;
+}
+body .main_div .order {
+  margin-bottom: .266667rem;
+}
+body .main_div .order .order-item {
+  background: #fff;
+  margin-top: .266667rem;
+}
+body .main_div .order .order-item .van-button {
+  margin: 10px 0px;
+  height: 30px;
+  line-height: 30px;
+}
+body .main_div .order .order-item .item-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 10px;
+  border-top: 1px solid #e5e5e5;
+}
+body .main_div .order .order-item .item-button .van-button {
+  margin: 10px 0px;
+  height: 30px;
+  line-height: 30px;
+}
+body .main_div .order .order-item .item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px .426667rem;
+  border-bottom: 1px solid #f7f7f7;
+}
+body .main_div .order .order-item .item-top .top-left {
+  color: #007D7B;
+}
+body .main_div .order .order-item .item-top .top-right {
+  color: #E2574C;
+}
+body .main_div .order .order-item .commodity_card {
+  margin-top: 0;
+  padding: .346667rem .266667rem;
+  border-radius: .133333rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #f7f7f7;
+}
+body .main_div .order .order-item .commodity_card .van-card__num {
+  text-align: right;
+}
+body .main_div .order .order-item .commodity_card .van-card__title {
+  font-family: PingFang SC;
+  font-size: .373333rem;
+  font-weight: 500;
+  color: #007D7B;
+}
+body .main_div .order .order-item .commodity_card .commodity_img {
+  border: 1px solid #EEEEEE;
+}
+body .main_div .order .order-item .commodity_card .commodity_price {
+  margin-top: .533333rem;
+  font-size: .32rem;
+  color: #007D7B;
+}
+body .main_div .order .order-item .commodity_card .commodity_totalPrices {
+  margin-top: .533333rem;
+  font-family: PingFang SC;
+  font-size: .426667rem;
+  font-weight: 500;
+  color: #007D7B;
+}
+body .main_div .order .order-item .commodity_card .commodity_number {
+  font-size: .32rem;
+  color: #007D7B;
+}
+body .main_div .order .order-item .item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: .96rem;
+  color: #007D7B;
+  padding: 0px .426667rem;
+}
+body .main_div .van-dialog__header {
+  margin-bottom: 25px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>记录</title>
+    <link rel="stylesheet" href="./css/commission_integral/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar :title="type ==='integral'?'积分记录':'佣金记录'" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="main_top">
+            <div class="top-one" v-if="type === 'integral'">
+                总积分
+            </div>
+            <div class="top-one" v-else>
+                总佣金（元）
+            </div>
+            <div class="top-two">
+                {{my_money}}
+            </div>
+            <div class="top-three" v-if="data && data.length>0">
+                共计{{data.length}}笔
+            </div>
+        </div>
+        <van-cell-group>
+            <div v-for="(item,index) in data" :key="index" class="list">
+                <div class="list-top">
+                    <div>
+                        <van-icon name="description" size="18"></van-icon>
+                        订单号 {{item.order_number}}
+                        <div style="margin-top:5px;">
+                            创建时间：{{item.create_time}}
+                        </div>
+                    </div>
+                    <div>
+                        <span v-if="item.operation == 0" style="color:#009172">+{{item.numbers}}</span>
+                        <span v-else style="color:red">-{{item.numbers}}</span>
+                    </div>
+                </div>
+                <div>描述：{{item.remark}}</div>
+            </div>
+        </van-cell-group>
+    </div>
+    <script src=" ./config/bodyjs.js"> </script>
+    <script src="./js/commission_integral/index.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-地址管理</title>
+    <link rel="stylesheet" href="./css/address/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="收货地址" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <van-radio-group class="radio_group" v-model="chosenAddress">
+            <van-cell-group v-if="list">
+                <van-cell class="cell_main" v-for="(item, index) in list" :key="index" @click="backAddress(item)">
+                    <div class="cell_div" slot="title">
+                        <van-row class="cell_title" type="flex" justify="space-between" align="center">
+                            <van-col class="cell_name">{{item.consignee}}</van-col>
+                            <van-col class="cell_phone">{{item.phone}}</van-col>
+                        </van-row>
+                        <div class="cell_subtitle">
+                            {{item.province}}{{item.city}}{{item.area}}{{item.detailed_addr}}
+                        </div>
+                    </div>
+                    <van-row slot="label" class="cell_radio_row" type="flex" justify="space-between" align="center">
+                        <van-col class="cell_radio_col">
+                            <van-radio class="cell_radio" checked-color="#007D7B" :name="item.id"
+                                @click.stop="onChange(item)">设为默认</van-radio>
+                        </van-col>
+                        <van-col class="cell_radio_btn_group">
+                            <van-button class="cell_radio_btn" plain hairline type="primary"
+                                @click.stop="onRemove(item)">删除
+                            </van-button>
+                            <van-button class="cell_radio_btn" plain hairline type="primary" @click.stop="onEdit(item)">
+                                编辑
+                            </van-button>
+                        </van-col>
+                    </van-row>
+                </van-cell>
+            </van-cell-group>
+        </van-radio-group>
+        <div class="add_btn_div">
+            <van-button class="add_btn" type="primary" @click="onAdd">添加新地址</van-button>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/address/index.js"></script>
+</body>
+
+</html>

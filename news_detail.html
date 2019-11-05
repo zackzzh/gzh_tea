@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新闻详情</title>
+    <link rel="stylesheet" href="./css/news_detail/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="新闻详情" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="news_list">
+            <div class="news_list_title">
+                {{item.title}}
+            </div>
+            <van-row type="flex" justify="space-between" style="padding:0px 10px; margin:10px; font-size:14px;">
+                <van-col span="12">{{item.create_time}}</van-col>
+                <van-col span="12" style="text-align: right">{{item.username}}</van-col>
+            </van-row>
+            <div class="content" v-html="item.content" style="padding:0px 10px; margin-bottom:10px; font-size:14px;">
+                
+            </div>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/news_detail/index.js"></script>
+</body>
+
+</html>

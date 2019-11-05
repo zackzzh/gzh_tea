@@ -1,0 +1,98 @@
+html {
+  background: #f7f7f7;
+  flex: 1;
+  align-items: center;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div .commodity_div {
+  padding: 0 .133333rem;
+}
+html .main_div .commodity_div .van-swipe-cell__right .van-button {
+  height: 100%;
+  margin-left: .266667rem;
+}
+html .main_div .commodity_div .van-card__content {
+  width: 6rem;
+}
+html .main_div .commodity_div .cell_radio_btn {
+  border: 1px solid #e5e5e5;
+  height: auto;
+  margin-left: .266667rem;
+  padding: .133333rem .266667rem;
+  font-family: PingFang SC;
+  font-size: .266667rem;
+  font-weight: 500;
+  color: #888888;
+  line-height: .266667rem;
+  position: relative;
+}
+html .main_div .commodity_div .van-checkbox {
+  align-items: flex-start;
+}
+html .main_div .commodity_div .commodity_card {
+  position: relative;
+  margin-top: .133333rem;
+  padding: .346667rem .266667rem;
+  border-radius: .133333rem;
+  background: #FFFFFF;
+  box-shadow: 0 0 0.466667rem 0 rgba(18, 46, 116, 0.1);
+}
+html .main_div .commodity_div .commodity_card .van-card__title {
+  font-family: PingFang SC;
+  font-size: .373333rem;
+  font-weight: 500;
+  color: #000000;
+}
+html .main_div .commodity_div .commodity_card .commodity_img {
+  border: 1px solid #EEEEEE;
+}
+html .main_div .commodity_div .commodity_card .commodity_price {
+  margin-top: .533333rem;
+  font-size: .32rem;
+  color: #AAAAAA;
+}
+html .main_div .commodity_div .commodity_card .commodity_totalPrices {
+  margin-top: .533333rem;
+  font-family: PingFang SC;
+  font-size: .426667rem;
+  font-weight: 500;
+  color: #007D7B;
+}
+html .main_div .submit_bar {
+  background: #74B6B5;
+  justify-content: space-between;
+}
+html .main_div .submit_bar .all_checked {
+  margin-left: .266667rem;
+}
+html .main_div .submit_bar .all_checked .van-checkbox__label {
+  font-size: .32rem;
+  color: #007D7B;
+}
+html .main_div .submit_bar .all_checked .van-icon {
+  border-radius: 50%;
+  border: 1px solid #007D7B;
+}
+html .main_div .submit_bar .van-button--primary {
+  border: none;
+  background: #007D7B;
+}
+html .main_div .submit_bar .submit_total_div {
+  flex: 1;
+  margin-right: .666667rem;
+  font-size: .373333rem;
+  color: #FFFFFF;
+  text-align: right;
+}
+html .main_div .submit_bar .submit_total_div .submit_total {
+  font-size: .453333rem;
+  color: #007D7B;
+}
+html .main_div .submit_bar .submit_total_div .submit_tip {
+  display: block;
+  font-size: .213333rem;
+  color: #007D7B;
+}

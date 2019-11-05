@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-订单</title>
+    <link rel="stylesheet" href="./css/orders/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="订单" left-arrow @click-left="onClickLeft">
+        </van-nav-bar>
+        <van-tabs v-model="active" swipe-threshold="5" sticky animated @click="tabs" v-if="title.length>0">
+            <van-tab :title="d" v-for="(d, index) in title" :key="index">
+                <div class="order">
+                    <div class="order-item" v-for="(item, index) in orderList" :key="index" @click="toDetail(item)">
+                        <div class="item-top">
+                            <div class="top-left">
+                                <div style="margin-bottom:5px;">订单编号{{item.order_number}}</div>
+                                <div>创建时间{{item.create_time}}</div>
+                            </div>
+                            <div class="top-right" style="text-align: right;">
+                                <div style="margin-bottom:5px;">
+                                    <span v-if="item.order_status == 0">待付款</span>
+                                    <span v-else-if="item.order_status == 1">待发货</span>
+                                    <span v-else-if="item.order_status == 5">生产中</span>
+                                    <span v-else-if="item.order_status == 3">待收货</span>
+                                    <span v-else-if="item.order_status == 4 && item.is_comment == 0">已完成</span>
+                                    <span v-else-if="item.order_status == 4 && item.is_comment == 1">已评价</span>
+                                    <span v-else-if="item.order_status == 2">已取消</span>
+                                    <span v-else-if="item.order_status == 6">生产完成</span>
+                                    <span v-else-if="item.order_status == 7">设计完成</span>
+                                    <span v-else>全部</span>
+                                </div>
+                                <div style="margin-bottom:5px;">
+                                    <span v-if="item.order_type ==0">私版定制订单</span>
+                                    <span v-if="item.order_type ==2">小批量定制订单</span>
+                                    <span v-if="item.order_type ==1">设计收费订单</span>
+                                </div>
+                                <div>
+                                    <span v-if="item.is_return ==2">退货已申请</span>
+                                    <span v-if="item.is_return ==3">退货已完成</span>
+                                    <span v-if="item.is_return ==4">退货已拒绝</span>
+                                </div>
+                            </div>
+                        </div>
+                        <template v-if="item.order_items.length>0">
+                            <van-card class="commodity_card" v-for="(good, index) in item.order_items" :key="index"
+                                :title="good.goods_name">
+                                <!-- 图片 -->
+                                <van-image v-if="good.cover_image" class="commodity_img" slot="thumb" fit="contain"
+                                    width="100%" height="auto" :src="API_BASE_URL + good.cover_image">
+                                </van-image>
+                                <!-- 单价X数量 -->
+                                <!-- 总价 -->
+                                <div class="commodity_totalPrices" slot="num">
+                                    <div>￥ {{good.price}}</div>
+                                    <div class="commodity_number">x {{good.quantity}}</div>
+                                </div>
+                                <div slot="footer">
+                                    <van-button type="primary" @click.stop="comment(good,item.order_number)"
+                                        v-if="item.is_return == 1 && item.order_status == 4 && good.is_comment == 0 && (item.order_type == 0 || item.order_type ==2)">
+                                        去评价
+                                    </van-button>
+                                    <van-button disable style="background: #e5e5e5"
+                                        v-if="item.is_return == 1 && item.order_status == 4 && good.is_comment == 1 && (item.order_type == 0 || item.order_type ==2)">
+                                        已评价
+                                    </van-button>
+                                </div>
+                            </van-card>
+                        </template>
+                        <div class="item-bottom">
+                            <div class="bottom-left">共<span v-if="item.order_items">{{item.order_items.length}}</span>
+                                件商品，合计：￥ <span v-if="item.total_amount" v-html="item.total_amount"></span>
+                                (含运费￥ <span v-if="item.freight_amount" v-html="item.freight_amount"></span> )</div>
+                        </div>
+                        <div class="item-bottom"
+                            v-if="item.order_status==5 && (item.order_type == 0 || item.order_type ==2)">
+                            <div class="bottom-left">
+                                <span>剩余应付金额：￥{{item.total_amount-item.paid_amount}}</span>
+                            </div>
+                        </div>
+                        <div class="item-button">
+                            <van-button style="margin-right:10px;" type="primary" @click.stop="pay(item)"
+                                v-if="item.order_status == 0 || item.order_status == 6">待支付
+                            </van-button>
+                            <van-button style="margin-right:10px;" type="primary" @click.stop="reback(item)"
+                                v-if="item.is_return == 1 && (item.order_status == 1 ||　item.order_status == 3 || item.order_status == 5 || item.order_status == 4 || item.order_status == 7 || item.order_status == 6)">
+                                申请退货
+                            </van-button>
+                            <van-button type="primary" @click.stop="confirm_goods(item)" v-if="item.is_return == 1 && item.order_status == 3">
+                                确认收货
+                            </van-button>
+                            <van-button type="primary" @click.stop="design(item,0)" v-if="item.is_return == 1 && item.order_status == 7"
+                                style="margin-right:10px;">不满意
+                            </van-button>
+                            <van-button type="primary" @click.stop="design(item,1)" v-if="item.is_return == 1 && item.order_status == 7">满意
+                            </van-button>
+                            <van-button type="primary" @click.stop="create(item)"
+                                v-if="item.order_status == 4 && item.order_type == 1 && item.is_return == 1">
+                                生成订单
+                            </van-button>
+                        </div>
+                    </div>
+                </div>
+
+            </van-tab>
+        </van-tabs>
+        <van-dialog v-model="show" title="生成订单" show-cancel-button @confirm="confirm" @cancel="show = false">
+            <van-cell-group>
+                <van-field v-model="formData.quantity" label="数量" type="text" placeholder="请输入数量">
+                </van-field>
+                <van-field v-model="formData.remark" label="留言" type="textarea" placeholder="请输入留言" rows="1" autosize>
+                </van-field>
+            </van-cell-group>
+        </van-dialog>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/orders/index.js"></script>
+</body>
+
+</html>

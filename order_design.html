@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成订单</title>
+    <link rel="stylesheet" href="./css/order_detail/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="生成订单" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div v-if="item.id">
+            <!-- <div class="order-detail-address">
+                <van-cell icon="location-o" label-class="cell_address_title"
+                    :label="item.province + item.city + item.area + item.detailed_addr" center :value="item.phone">
+                    <div class="cell_address_title" slot="title">
+                        {{item.consignee}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </van-cell>
+            </div> -->
+            <template v-if="item.order_item && item.order_item.length>0">
+                <van-card class="commodity_card" v-for="(good, index) in item.order_item" :key="index"
+                    :title="good.goods_name">
+                    <!-- 图片 -->
+                    <van-image v-if="good.cover_image" class="commodity_img" slot="thumb" fit="contain" width="100%"
+                        height="auto" :src="API_BASE_URL + good.cover_image">
+                    </van-image>
+                    <!-- 单价X数量 -->
+                    <!-- <div class="commodity_price" slot="price">含税￥{{item.price}}</div> -->
+                    <!-- 总价 -->
+                    <div class="commodity_totalPrices" slot="num">
+                        <div>￥ {{good.price}}</div>
+                        <div class="commodity_number">x {{good.quantity}}</div>
+                    </div>
+                    <!-- <div slot="tags">
+                        <van-tag plain type="danger">配件</van-tag>
+                    </div> -->
+                </van-card>
+            </template>
+            <div class="order-detail-info" v-if="item.order_type == 1">
+                <van-cell title="包装上的产品名称" :value="item.order_item[0].devise_packaging_goods"></van-cell>
+                <van-cell title="产品名称" :value="item.order_item[0].devise_product_name"></van-cell>
+                <van-cell title="净含量" :value="item.order_item[0].devise_capacity"></van-cell>
+                <van-cell title="设计风格" :value="item.order_item[0].devise_devise_style"></van-cell>
+            </div>
+            <div class="order-detail-design"
+                v-if="item.order_type == 1 && (item.order_status == 7 || item.order_status == 4)">
+                <div class="desgin-top">
+                    <div style="margin: 10px 0px;">设计图展示</div>
+                    <!-- 轮播 -->
+                    <van-swipe :autoplay="3000" v-if="item.design">
+                        <van-swipe-item v-for="(image, index) in item.design.design_images" :key="index">
+                            <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + image"></van-image>
+                        </van-swipe-item>
+                    </van-swipe>
+                </div>
+                <div class="desgin-bottom" v-if="item.design">
+                    <div style="margin: 10px 0px;">设计描述</div>
+                    <!-- 轮播 -->
+                    {{item.design.remark}}
+                </div>
+            </div>
+            <div class="order-detail-info">
+                <!-- <van-cell title="发票" value="无" v-if="item.is_invoice==0"></van-cell>
+                <van-cell title="发票" :value="item.invoice_type" v-if="item.is_invoice==1"></van-cell>
+                <van-cell title="发票内容"
+                    :value="item.invoice_payable + item.invoice_opening_bank + item.invoice_opening_account + item.invoice_duty_paragraph + item.invoice_contact_number + item.invoice_address"
+                    v-if="item.is_invoice==1">
+                </van-cell> -->
+                <van-cell tite-class="cell_remark"
+                    v-if="customerInfo.integral_config && customerInfo.integral_config.deduction_status === '1' && customerInfo.integral_config.consumption_interal && customerInfo.integral_config.deduction_amount"
+                    value-class="cell_remark" :title="'积分--现有积分' + customerInfo.integral"
+                    :label="customerInfo.integral_config.consumption_interal + '积分抵' + customerInfo.integral_config.deduction_amount+'元'">
+                    <van-switch slot="default" v-model="checked" size="24px"></van-switch>
+                </van-cell>
+                <van-field class="upload_Textarea" v-if="checked" :value="integral" label="积分输入" v-model="integral"
+                    type="number" rows="2" autosize placeholder="请填写积分" @blur="integralChange"></van-field>
+                <van-field class="upload_Textarea" :value="formData.quantity" label="数量" v-model="formData.quantity"
+                    type="number" rows="2" autosize placeholder="请填写购买数量" min="1"></van-field>
+                <van-field class="upload_Textarea" :value="formData.remark" label="订单备注" v-model="formData.remark"
+                    type="textarea" rows="2" autosize placeholder="请填写订单备注"></van-field>
+            </div>
+            <div class="order-detail-info">
+                <van-cell title="商品金额" :value="'￥'+(item.design_price*formData.quantity)"></van-cell>
+                <van-cell title="运费" :value="'+' +  freight_amount" class="yunfei"></van-cell>
+                <van-cell v-if="integral_price>0" title="积分" :value="'-￥'+ integral_price " class="integral"></van-cell>
+                <van-row>
+                    <van-col :span="24">
+                        <div class="order-detail-total">
+                            应付金额<span>￥{{(item.design_price*formData.quantity)+freight_amount-integral_price}}</span>
+                        </div>
+                    </van-col>
+                </van-row>
+            </div>
+            <van-row class="pay_btn_row" type="flex" justify="center" align="center">
+                <van-col span="12" class="pay_total">
+                    合计：<span>￥{{(item.design_price*formData.quantity)+freight_amount-integral_price}}</span>
+                </van-col>
+                <van-col span="12" class="pay_btn_col">
+                    <van-button class="pay_btn" type="primary" @click="create">支付</van-button>
+                </van-col>
+            </van-row>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/order_design/index.js"></script>
+</body>
+
+</html>

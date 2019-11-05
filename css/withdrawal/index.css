@@ -1,0 +1,44 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .main_top {
+  height: 2rem;
+  margin: 20px;
+  background: linear-gradient(to right, #48a748, #20da92);
+  color: #fff;
+  padding: .8rem 1.066667rem;
+  border-radius: .266667rem;
+  font-size: .4rem;
+}
+html .main_div .main_top .top-two {
+  margin-top: .266667rem;
+  font-size: .8rem;
+}
+html .main_div .main_mid {
+  margin: 20px;
+  margin-top: 40px;
+}
+html .main_div .main_bottom {
+  margin: 20px;
+}
+html .main_div .main_bottom .van-button {
+  width: 100%;
+}
+html .main_div .main-record {
+  position: relative;
+  font-size: 14px;
+  text-align: right;
+  top: 10px;
+  right: 20px;
+  color: #666;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>材质分类</title>
+    <link rel="stylesheet" href="./css/material/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="材质分类" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <van-row class="news_list">
+            <van-col class="news_item" v-for="(item,index) in materials" :key="index" :span="8">
+                <van-image width="90%" height="auto" :src="API_BASE_URL+item.icon" @click="onGrid(item)"></van-image>
+                {{item.name}}
+            </van-col>
+        </van-row>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/material/index.js"></script>
+</body>
+
+</html>

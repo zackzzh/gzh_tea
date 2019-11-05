@@ -1,0 +1,32 @@
+html {
+    flex              : 1;
+    justify-content   : center;
+    align-items       : center;
+    background        : #F7F7F7 !important;
+    // min-height     : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        // height: calc(100vh);
+        position : relative;
+
+        .news_list {
+            margin   : 0px 5px;
+            margin-top: 10px;
+            border:5px solid #F7F7F7;
+            .news_item {
+                background     : #fff;
+                display        : flex;
+                flex-direction : column;
+                align-items    : center;
+                justify-content: center;
+                margin-bottom  : 10px;
+                border:5px solid #F7F7F7;
+                padding-bottom: 5px;
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .comment_list {
+  background: #fff;
+  padding: .773333rem .746667rem .453333rem .746667rem;
+  border-radius: .213333rem;
+}
+html .main_div .comment_list .comment_list_button {
+  display: flex;
+  justify-content: center;
+}
+html .main_div .comment_list .comment_list_button .van-button {
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  border: 1px solid #999;
+  background: transparent;
+  font-size: .4rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333;
+}
+html .main_div .comment_list .comment_list_item {
+  margin-bottom: .266667rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+html .main_div .comment_list .comment_list_title {
+  color: #000;
+  font-weight: bold;
+  font-size: .4rem;
+}
+html .main_div .comment_list .comment_list_title:before {
+  position: relative;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  border: 2px solid red;
+}
+html .main_div .comment_list .comment_list_item_top {
+  display: flex;
+  align-items: center;
+}
+html .main_div .comment_list .comnent_list_item_time,
+html .main_div .comment_list .comnent_list_item_bottom {
+  margin-top: 10px;
+}
+html .main_div .comment_list .comnent_list_item_bottom {
+  margin-bottom: 10px;
+}

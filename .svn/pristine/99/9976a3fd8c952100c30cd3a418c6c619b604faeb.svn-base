@@ -1,0 +1,61 @@
+html {
+  background: #F7F7F7;
+  flex: 1;
+  align-items: center;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div .header_title {
+  margin: 0 .213333rem;
+  font-size: .426667rem;
+  color: #A9B0AF;
+}
+html .main_div .header_title_active {
+  font-size: .56rem;
+  color: #009172;
+}
+html .main_div .card_div {
+  margin: .426667rem .133333rem;
+  padding: .426667rem .48rem .8rem .48rem;
+  border-radius: .133333rem;
+  background: #ffffff;
+  box-shadow: 0 0 0.453333rem 0 rgba(18, 46, 116, 0.1);
+}
+html .main_div .card_div .card_title {
+  margin-bottom: .613333rem;
+  font-family: Noto Sans S Chinese;
+  font-size: .453333rem;
+  font-weight: 400;
+  color: #000000;
+}
+html .main_div .card_div .card_rate_row {
+  margin-bottom: .533333rem;
+}
+html .main_div .card_div .card_rate_row .card_rate_title {
+  margin-right: .4rem;
+  font-family: Noto Sans S Chinese;
+  font-size: .373333rem;
+  font-weight: 400;
+}
+html .main_div .card_div .card_subtitle {
+  font-family: Noto Sans S Chinese;
+  font-size: .32rem;
+  font-weight: 400;
+  color: #7C7C7C;
+}
+html .main_div .details_btn_div {
+  margin-top: .8rem;
+  padding: 0 .8rem;
+}
+html .main_div .details_btn_div .details_btn {
+  width: 100%;
+  border: none;
+  border-radius: .586667rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  font-size: .4rem;
+  line-height: .4rem;
+  background: #007D7B;
+}

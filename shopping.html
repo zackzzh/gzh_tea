@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-购物车</title>
+    <link rel="stylesheet" href="./css/shopping/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="购物车" left-arrow @click-left="onClickLeft">
+        </van-nav-bar>
+        <div class="commodity_div">
+            <!-- v-model="result" -->
+            <van-checkbox v-model="item.checked" class="commodity_card" v-for="(item, index) in commodity" :key="item"
+                :name="item" checked-color="#01C07B" @click="changeBox(item,index)">
+                <van-card style="background: #ffffff;padding: 0; padding-bottom: 10px; border-bottom:1px solid #e5e5e5;"
+                    :title="item.goods_name">
+                    <!-- 图片 -->
+                    <van-image class="commodity_img" slot="thumb" fit="contain" width="100%" height="auto"
+                        :src="API_BASE_URL + item.cover_image">
+                    </van-image>
+                    <!-- 单价X数量 -->
+                    <div class="commodity_price" slot="price">￥{{item.price}} X {{item.quantity}}</div>
+                    <!-- 总价 -->
+                    <div class="commodity_totalPrices" slot="num">￥ {{item.price * item.quantity}}</div>
+                    <div slot="footer">
+                        <van-button size="mini" class="cell_radio_btn" @click.stop="del(item)">删除</van-button>
+                    </div>
+                </van-card>
+                <van-card style="background: #ffffff;padding: 0; padding-bottom: 10px; border-bottom:1px solid #e5e5e5;"
+                    :title="peijian.goods_name" v-for="(peijian, index) in item.parts">
+                    <!-- 图片 -->
+                    <van-image class="commodity_img" slot="thumb" fit="contain" width="100%" height="auto"
+                        :src="API_BASE_URL + peijian.cover_image">
+                    </van-image>
+                    <!-- 单价X数量 -->
+                    <div class="commodity_price" slot="price">￥{{peijian.sku_price}}</div>
+                    <!-- 总价 -->
+                    <div class="commodity_totalPrices" slot="num">￥ {{peijian.sku_price * peijian.quantity}}
+                    </div>
+                </van-card>
+            </van-checkbox>
+        </div>
+
+
+        <!-- 结算 -->
+        <van-submit-bar class="submit_bar" button-type="primary" button-text="结算" @submit="onSubmit">
+            <van-checkbox class="all_checked" v-model="checked" @click="onAlChecked" checked-color="#01C07B">全选
+            </van-checkbox>
+            <div class="submit_total_div" slot="default">
+                合计：
+                <span class="submit_total">￥{{total}}</span>
+                <span class="submit_tip">(不含运费)</span>
+            </div>
+        </van-submit-bar>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/shopping/index.js"></script>
+</body>
+
+</html>

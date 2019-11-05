@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-商品详情</title>
+    <link rel="stylesheet" href="./css/info_sku/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="商品详情" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="main_info_div" v-if="data && data.id">
+            <div class="info-detail">
+                <div v-for="(item,key) in defaultAttr" :key="key">
+                    <div class="detail-item" v-if="item.items && item.items.length>0">
+                        <div class="item-lable">
+                            {{item.ident}}：
+                        </div>
+                        <div class="item-select">
+                            <div v-for="(option,index) in item.items" :key="index">
+                                <span v-if="option.status==1" class="item-span"
+                                    :class="{'box_types_active':option.id==item.defaultKey}"
+                                    @click="handle_box_types(option,item)">
+                                    {{option.name}}
+                                </span>
+                                <span v-else class="item-span types_default">
+                                    {{option.name}}
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-detail">
+                <van-cell-group class="detail-list">
+                    <van-cell title="印刷数量：">
+                        <van-stepper v-model="data.min_buy_num" :min="min_buy_num" slot="default"
+                            @change="changeProductNum">
+                        </van-stepper>
+                    </van-cell>
+                    <van-cell title="印刷单价：" :value="'¥' + data.price"></van-cell>
+                    <van-cell title="印刷价格：" :value="'¥'+(data.price*data.min_buy_num)"></van-cell>
+                    <van-cell title="生产周期：" :value="data.production_cycle"></van-cell>
+                </van-cell-group>
+            </div>
+            <div class="info-tech">
+                <div class="tech-title">
+                    推荐配件
+                </div>
+                <div class="tech-line"></div>
+
+                <div class="tech-scroll">
+                    <van-row class="tech-item">
+                        <div style="margin-right:.266667rem;" class="item-one" v-for="(item,index) in data.parts"
+                            :key="index">
+                            <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + item.cover_image">
+                            </van-image>
+
+                            <div class="line-content">
+                                <div class="line-title">{{item.goods_name}}</div>
+                                <van-stepper v-model="item.min_buy_num" :step="item.incremental_number"
+                                    @change="changeNum(item)" :disabled="!item.checked" :min="data.incremental_number">
+                                </van-stepper>
+                                <van-row type="flex" justify="space-between" class="line-bottom">
+                                    <van-col style="color:#fff;">￥{{item.price}}</van-col>
+                                    <van-col>
+                                        <van-checkbox @click="handletech(item)" v-model="item.checked"
+                                            style="color:#007D7B;"></van-checkbox>
+                                    </van-col>
+                                </van-row>
+                            </div>
+                        </div>
+                    </van-row>
+                </div>
+            </div>
+            <div class="info-detail">
+                <van-cell-group class="detail-list">
+                    <van-cell title="已选择：" :value="number + '件'" class="list-bottom">
+                    </van-cell>
+                    <van-cell title="原价：" :value="'￥' + (sum + data.price*data.min_buy_num).toFixed(2)"
+                        class="list-bottom">
+                    </van-cell>
+                    <!-- <van-cell title="套餐优惠：" value="¥30.00"></van-cell>
+                    <van-cell title="套餐单价：" value="¥140.00"></van-cell>
+                    <van-cell title="套餐价格：" value="¥1400.00"></van-cell> -->
+                </van-cell-group>
+            </div>
+        </div>
+        <van-goods-action class="info-bottom">
+            <van-goods-action-icon icon="chat-o" class="wechat" :title="'客服'">
+                <a href="http://p.qiao.baidu.com/cps/chat?siteId=13472913&userId=24147698">客服</a>
+            </van-goods-action-icon>
+            <van-goods-action-button type="warning" text="加入购物车" @click="addCart"></van-goods-action-button>
+            <van-goods-action-button type="danger" text="立即购买" @click="onClickButton"></van-goods-action-button>
+        </van-goods-action>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/info_sku/index.js"></script>
+</body>
+
+</html>

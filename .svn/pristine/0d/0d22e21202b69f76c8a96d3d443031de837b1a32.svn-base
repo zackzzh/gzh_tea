@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-商品详情</title>
+    <link rel="stylesheet" href="./css/info/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="商品详情" left-arrow @click-left="onClickLeft">
+        </van-nav-bar>
+        <div class="content_div">
+            <van-swipe :autoplay="3000">
+                <van-swipe-item v-for="(image, index) in data.show_pictures" :key="index">
+                    <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + image"
+                        class="content_div_image">
+                </van-swipe-item>
+            </van-swipe>
+            <div class="card_div">
+                <div class="card_tag" v-if="data.materials && data.materials.length>0">
+                    <span class="card_tag_left">{{data.materials[0]}}</span>
+                    <span class="card_tag_right">{{data.materials[1]}}</span>
+                </div>
+                <div class="card_title">{{data.goods_name}}</div>
+                <div class="card_order">起订量：{{data.min_buy_num}}套</div>
+                <div class="card_price">￥{{data.price}}</div>
+                <van-row>
+                    <van-col class="card_col_text" span="10">容量：{{data.capacity}}</van-col>
+                </van-row>
+                <van-row>
+                    <van-col class="card_col_text" span="24">盒行外尺寸：长：{{data.goods_long}}宽：{{data.goods_wide}}
+                        高：{{data.goods_high}}</van-col>
+                </van-row>
+                <div v-html="data.goods_details" class="container_info"></div>
+
+                <van-button class="card_btn" type="primary" @click="onClick">在线报价</van-button>
+            </div>
+            <div class="comment_list" v-if="comment_list.length>0">
+                <div class="comment_list_title">
+                    评价{{comment_list.length}}
+                </div>
+                <div class="comment_list_item" v-for="(c,index) in comment_list" :key="index">
+                    <div class="comment_list_item_top" v-if="c && c.customer">
+                        <van-image fit="contain" width="60px" height="60px" :src="c.customer.head_img" round>
+                        </van-image>
+                        <div style="margin-left: 10px">
+                            <div>{{c.customer.username}}</div>
+                            <van-rate v-model="c.score" color="#F6A70E" void-color="#000000" size="24" readonly="true">
+                            </van-rate>
+                        </div>
+                    </div>
+                    <div class="comnent_list_item_time">
+                        {{c.create_time}}
+                    </div>
+                    <div class="comnent_list_item_bottom">
+                        {{c.content}}
+                    </div>
+                </div>
+                <div class="comment_list_button">
+                    <van-button round type="info" @click="comment_all">查看全部评价</van-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/info/index.js"></script>
+</body>
+
+</html>

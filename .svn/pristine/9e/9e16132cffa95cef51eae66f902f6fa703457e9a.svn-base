@@ -1,0 +1,214 @@
+[v-cloak] {
+    display: none;
+}
+
+.main_div {
+    padding-bottom: .48rem;
+
+    .search_bar_row {
+        padding: 0 .533333rem;
+
+        .search_bar_left {
+            text-align: center;
+
+            span {
+                font-size  : .533333rem;
+                font-weight: bold;
+            }
+        }
+
+        .search_bar_input {
+            padding: .266667rem 0 .266667rem .266667rem;
+        }
+    }
+
+
+
+    .filtrate_row {
+        margin    : .133333rem 0 .4rem 0;
+        text-align: center;
+
+        .filtrate_title {
+            font-family: Source Han Sans CN;
+            font-size  : .32rem;
+            font-weight: 400;
+            color      : #333333;
+
+            .filtrate_title_text {
+                width         : auto;
+                margin        : 0 25%;
+                padding-bottom: .133333rem;
+
+                span {
+                    margin-left: .133333rem;
+                    font-size  : .32rem;
+                }
+            }
+
+        }
+
+
+        .filtrate_title_active {
+            color: #F95043;
+
+            .filtrate_title_text {
+                // border-bottom-width: .053333rem;
+                // border-bottom-style: solid;
+                // border-image       : linear-gradient(to right, #F95043, #fff) 1 1;
+            }
+        }
+    }
+
+    // 弹出层
+    .custom_popup {
+        width  : 80%;
+        height : 100%;
+        padding: 0 .4rem;
+
+        .popup_icon {
+            margin: .4rem 0 .586667rem 0;
+        }
+
+        .popup-button {
+            position   : fixed;
+            bottom     : 0px;
+            display    : flex;
+            align-items: center;
+
+            .van-button {
+                padding    : 0px;
+                height     : 1.066667rem;
+                line-height: 1.066667rem;
+                width      : 3.733333rem;
+                margin     : 0 .133333rem
+            }
+        }
+
+        .van-cell-group {
+            display    : flex;
+            align-items: center;
+        }
+
+        .van-field__control {
+            border       : 1px solid #e5e5e5;
+            border-radius: 10px;
+            text-align   : center;
+        }
+
+        .popup_main_div {
+            .popup_title {
+                font-family   : PingFang SC;
+                font-size     : .4rem;
+                font-weight   : 500;
+                color         : #222222;
+                letter-spacing: .026667rem;
+            }
+
+            .popup_row {
+                margin: .4rem 0 .533333rem 0;
+
+                .popup_btn_item {
+                    height       : auto;
+                    margin-right : .266667rem;
+                    padding      : .24rem .32rem;
+                    border-radius: .133333rem;
+                    margin-bottom: .266667rem;
+                    font-family  : PingFang SC;
+                    font-size    : .32rem;
+                    font-weight  : 500;
+                    color        : #222222;
+                    line-height  : .32rem;
+                    background   : #F6F6F6;
+                }
+
+                .first_active,
+                .second_active,
+                .third_active {
+                    border: 1px solid #006765;
+                    color : #006765;
+                }
+            }
+        }
+    }
+
+    .van-image__img {
+        width : 4.56rem;
+        height: 4.56rem;
+    }
+
+    // 商品卡片
+    .card_row {
+        margin-top: .293333rem;
+        padding   : 0 .08rem;
+
+        .card_col {
+            margin-bottom: .266667rem;
+            padding      : 0 .186667rem;
+
+            .card_div {
+                border       : 1px solid rgba(0, 0, 0, 0.15);
+                border-radius: .133333rem;
+                overflow     : hidden;
+
+                .card_title {
+                    padding         : .293333rem 0 0 .266667rem;
+                    font-family     : PingFang SC;
+                    font-size       : .4rem;
+                    font-weight     : 500;
+                    // width        : 2.533333rem;
+                    text-align      : center;
+                    width           : 90%;
+                    white-space     : nowrap;
+                    overflow        : hidden;
+                    text-overflow   : ellipsis;
+                }
+
+                .card_title_row {
+                    padding: .293333rem 0 0 .266667rem;
+
+                    .card_title_col {
+                        div {
+                            font-family: PingFang SC;
+                            font-size  : .213333rem;
+                            font-weight: 500;
+                            color      : rgba(0, 103, 101, 0.62);
+                        }
+                    }
+                }
+
+                .price_row {
+                    margin : .346667rem 0 .266667rem 0;
+                    padding: 0 .186667rem 0 .266667rem;
+
+                    .price_col {
+                        font-family: PingFang SC;
+                        font-size  : 12px;
+                        font-weight: 500;
+                        color      : #006765;
+
+                        span {
+                            margin-left: .133333rem;
+                            font-size  : .32rem;
+                        }
+                    }
+
+                    .price_btn_col {
+                        .price_btn {
+                            margin       : 0;
+                            padding      : .106667rem .16rem;
+                            height       : auto;
+                            outline      : none;
+                            border       : none;
+                            border-radius: .133333rem;
+                            line-height  : .506667rem;
+                            font-family  : PingFang SC;
+                            font-size    : .32rem;
+                            font-weight  : 500;
+                            background   : #007D7B;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

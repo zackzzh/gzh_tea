@@ -1,0 +1,179 @@
+body {
+    flex      : 1;
+    min-height: calc(100vh);
+    background: #f7f7f7;
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        .content_div {
+            padding: 0 .106667rem;
+
+            .content_div_card {}
+
+            .commodity_card {
+                padding      : .346667rem .266667rem;
+                border-radius: .133333rem;
+                background   : #FFFFFF;
+                box-shadow   : 0 0 .466667rem 0 rgba(18, 46, 116, 0.1);
+
+                .van-card__title {
+                    font-family: PingFang SC;
+                    font-size  : .373333rem;
+                    font-weight: 500;
+                    color      : #000000;
+                }
+
+                .commodity_img {
+                    border: 1px solid #EEEEEE;
+                }
+
+                .commodity_price_fun() {
+                    margin-top: .533333rem;
+                }
+
+                .commodity_price {
+                    .commodity_price_fun;
+                    font-size: .32rem;
+                    color    : #007D7B;
+                }
+
+                .commodity_totalPrices {
+                    .commodity_price_fun;
+                    font-family: PingFang SC;
+                    font-size  : .426667rem;
+                    font-weight: 500;
+                    color      : #007D7B;
+                    text-align : right;
+
+                    .commodity_num {
+                        margin-top: .133333rem;
+                        font-size : .32rem;
+                        opacity   : 0.5;
+                    }
+                }
+            }
+
+            .order-detail-total {
+                padding   : 10px;
+                text-align: right;
+                font-size : 16px;
+                background: #fff;
+
+                span {
+                    color: red;
+                }
+            }
+
+            .yunfei {
+                .van-cell__value {
+                    color: #007D7B;
+                }
+            }
+
+            .integral {
+                .van-cell__value {
+                    color: red;
+                }
+            }
+
+
+            .van_cell_fun() {
+                .van-cell {
+                    &:first-child {
+                        border-radius: .133333rem .133333rem 0 0;
+                    }
+
+                    &:last-child {
+                        border-radius: 0 0 .133333rem .133333rem;
+                    }
+                }
+            }
+
+
+            .cell_div {
+                margin: .213333rem 0;
+                .van_cell_fun;
+
+                .cell_address_title {
+                    font-family: PingFang SC;
+                    font-size  : .373333rem;
+                    font-weight: 500;
+                    color      : #B2B2B2;
+                }
+
+                .cell_remark {
+                    font-size  : .373333rem;
+                    font-family: PingFang SC;
+                    font-weight: 500;
+                    color      : #000000;
+                }
+
+                .dialog_row {
+                    margin: .666667rem;
+
+                    .dialog_radio {
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .pay_cell_div {
+                border-radius: .133333rem;
+                background   : #FFFFFF;
+
+                .pay_group_div {
+                    .van-cell-group {
+                        border-radius: .133333rem;
+                        .van_cell_fun;
+
+                        .van-icon-wechat {
+                            font-size: .666667rem;
+                            color    : #3FB232;
+                        }
+
+                        .van-icon-card {
+                            font-size: .666667rem;
+                            color    : #00508F;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pay_btn_row {
+            position  : fixed;
+            bottom    : 0;
+            left      : 0;
+            right     : 0;
+            text-align: center;
+            background: #74B6B5;
+
+            .pay_total {
+                font-family: PingFang SC;
+                font-size  : .4rem;
+                font-weight: 500;
+                color      : #ffffff;
+
+                span {
+                    color: #007D7B;
+                }
+            }
+
+            .pay_btn_col {
+                .pay_btn {
+                    width      : 100%;
+                    height     : auto;
+                    line-height: .4rem;
+                    padding    : .4rem 0;
+                    font-size  : .4rem;
+                    font-weight: 500;
+                    border     : none;
+                    background : #007D7B;
+                }
+            }
+        }
+    }
+}

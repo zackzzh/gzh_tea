@@ -1,0 +1,23 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .news_list .news_list_title {
+  font-size: 18px;
+  padding: 0px 10px;
+  padding-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+html .main_div .content img {
+  width: 100%;
+}

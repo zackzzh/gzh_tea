@@ -1,0 +1,27 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7 !important;
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .news_list {
+  margin: 0px 5px;
+  margin-top: 10px;
+  border: 5px solid #F7F7F7;
+}
+html .main_div .news_list .news_item {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border: 5px solid #F7F7F7;
+  padding-bottom: 5px;
+}

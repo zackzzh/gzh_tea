@@ -1,0 +1,53 @@
+html {
+    flex           : 1;
+    justify-content: center;
+    align-items    : center;
+    background     : #fff;
+    min-height     : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        // height: calc(100vh);
+        position : relative;
+
+        .main_top {
+            height       : 2rem;
+            margin       : 20px;
+            background   : linear-gradient(to right, rgb(72, 167, 72), rgb(32, 218, 146));
+            color        : #fff;
+            padding      : .8rem 1.066667rem;
+            border-radius: .266667rem;
+            font-size    : .4rem;
+
+            .top-two {
+                margin-top: .266667rem;
+                font-size : .8rem;
+            }
+        }
+
+        .main_mid {
+            margin    : 20px;
+            margin-top: 40px;
+        }
+
+        .main_bottom {
+            margin: 20px;
+
+            .van-button {
+                width: 100%;
+            }
+        }
+
+        .main-record {
+            position  : relative;
+            font-size : 14px;
+            text-align: right;
+            top       : 10px;
+            right     : 20px;
+            color     : #666;
+        }
+    }
+}

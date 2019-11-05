@@ -1,0 +1,142 @@
+[v-cloak] {
+  display: none;
+}
+.main_div .content_div {
+  min-height: calc(100vh);
+  padding-bottom: .666667rem;
+  background-image: url("../../img/info/bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.main_div .content_div .card_div {
+  margin: .666667rem .266667rem 0 .266667rem;
+  padding: .773333rem .746667rem .453333rem .746667rem;
+  border-radius: .213333rem;
+  background: #FFFFFF;
+}
+.main_div .content_div .card_div .container_info img {
+  width: 100%;
+}
+.main_div .content_div .card_div .van-icon-share {
+  font-size: 22px;
+  color: #000;
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+.main_div .content_div .card_div .card_tag {
+  margin-bottom: .4rem;
+  font-size: .24rem;
+  color: #FFFFFF;
+  position: relative;
+}
+.main_div .content_div .card_div .card_tag .card_tag_fun {
+  padding: 0.106667rem 0.32rem;
+}
+.main_div .content_div .card_div .card_tag .card_tag_left {
+  padding: 0.106667rem 0.32rem;
+  background: #000000;
+}
+.main_div .content_div .card_div .card_tag .card_tag_right {
+  margin-left: -0.08rem;
+  padding: 0.106667rem 0.32rem;
+  background: #FF1E1E;
+}
+.main_div .content_div .card_div .card_title {
+  margin-bottom: .373333rem;
+  font-family: PingFang SC;
+  font-size: .64rem;
+  font-weight: 500;
+  color: #333333;
+}
+.main_div .content_div .card_div .card_order {
+  margin-bottom: .533333rem;
+  font-family: PingFang SC;
+  font-size: .453333rem;
+  font-weight: 500;
+  color: #333333;
+}
+.main_div .content_div .card_div .card_price {
+  align-items: center;
+  margin-bottom: .533333rem;
+  font-family: PingFang SC;
+  font-size: .48rem;
+  font-weight: 500;
+  color: #333333;
+}
+.main_div .content_div .card_div .card_price span {
+  margin-left: .426667rem;
+  font-size: .426667rem;
+  text-decoration: line-through;
+  color: #999999;
+}
+.main_div .content_div .card_div .card_col_text {
+  margin-bottom: .266667rem;
+  font-family: PingFang SC;
+  font-size: .4rem;
+  font-weight: 500;
+  color: #999999;
+}
+.main_div .content_div .card_div .card_btn {
+  position: fixed;
+  bottom: 20px;
+  z-index: 1000;
+  width: 80%;
+  margin-top: .266667rem;
+  border: none;
+  border-radius: .586667rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  font-size: .4rem;
+  line-height: .4rem;
+  background: #007D7B;
+}
+.main_div .content_div .comment_list {
+  background: #fff;
+  margin: .666667rem .266667rem 0 .266667rem;
+  padding: .773333rem .746667rem .453333rem .746667rem;
+  border-radius: .213333rem;
+}
+.main_div .content_div .comment_list .comment_list_item {
+  margin-bottom: .266667rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.main_div .content_div .comment_list .comment_list_button {
+  display: flex;
+  justify-content: center;
+}
+.main_div .content_div .comment_list .comment_list_button .van-button {
+  height: 1.066667rem;
+  line-height: 1.066667rem;
+  border: 1px solid #999;
+  background: transparent;
+  font-size: .4rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333;
+}
+.main_div .content_div .comment_list .comment_list_title {
+  color: #000;
+  font-weight: bold;
+  font-size: .4rem;
+}
+.main_div .content_div .comment_list .comment_list_title:before {
+  position: relative;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  border: 2px solid red;
+}
+.main_div .content_div .comment_list .comment_list_item_top {
+  display: flex;
+  align-items: center;
+}
+.main_div .content_div .comment_list .comnent_list_item_time,
+.main_div .content_div .comment_list .comnent_list_item_bottom {
+  margin-top: 10px;
+}
+.main_div .content_div .comment_list .comnent_list_item_bottom {
+  margin-bottom: 10px;
+}

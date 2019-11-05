@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>会员体系</title>
+    <script src="./config/header.js"></script>
+</head>
+<style>
+    p {
+        margin: 10px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="会员体系" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <p>1.目前仅适用于定制系统产品，原有的现货商城（有赞商城另外的会员设置）不适用；</p>
+        <p>2.每消费10元累计1积分，每10积分抵扣1元，用于平台下单抵扣（不可提现）；</p>
+        <p>3.分享平台给其他消费者，消费者关注公众号后，可获得10积分，用于平台下单抵扣（不可提现）；
+            分享平台给其他消费者，消费者在平台下单之后，分享者享有该笔订单成交金额的XX%返利；
+            （1、分享产生消费，分享人账户可呈现佣金金额，但处于冻结状态；2、结案后，分享消费佣金解除冻结，转可以提现金额=结算佣金环节。3此功能需要账号授权。
+        </p>
+        <p>4.返利的数值要可在后台输入改变，返利可以提现</p>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/share_info/index.js"></script>
+</body>
+
+</html>

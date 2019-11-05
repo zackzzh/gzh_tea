@@ -1,0 +1,13 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7;
+  min-height: calc(100vh);
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}

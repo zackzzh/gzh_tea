@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-编辑地址</title>
+    <link rel="stylesheet" href="./css/address_edit/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" 　v-cloak>
+        <van-nav-bar title="收货地址" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <!-- <van-address-edit class="address_edit" :area-list="areaList" :search-result="searchResult"
+            :address-info="addressInfo" @save="onSave" @change-detail="onChangeDetail" @focus="onFocus"
+            @delete="onDelete" @cancel-delete="cancelDelete" @select-search="selectSearch" @change-area="changeArea" @change-detail="changeDetail"
+            show-search-result tel-validator>
+          
+        </van-address-edit> -->
+        <div class="card_div">
+            <van-cell-group class="card_cell_group">
+                <van-field v-model="addressInfo.consignee" label="收货人" placeholder="请输入收货人">
+                </van-field>
+                <van-field v-model="addressInfo.phone" type="tel" label="电话号码" placeholder="请输入电话号码"></van-field>
+                <van-field v-model="addressInfo.location" label="所在地区" placeholder="请选择所在地区" @click="onLocation"
+                    readonly is-link></van-field>
+                <van-field v-model="addressInfo.detailed_addr" label="详细地址" type="textarea" placeholder="请输入详细地址"
+                    rows="1" autosize />
+            </van-cell-group>
+            <van-checkbox class="checkbox" v-model="checked" label-position="left" checked-color="#007D7B"
+                icon-size=".533333rem" @click="onClick">
+                设为默认
+            </van-checkbox>
+        </div>
+        <!-- 底部弹出层 -->
+        <van-popup v-model="showPopup" position="bottom" :style="{ height: 'auto' }">
+            <van-area @cancel="onCancel" @confirm="onConfirm" :area-list="areaList"></van-area>
+        </van-popup>
+        <div class="add_btn_div">
+            <van-button class="add_btn" type="primary" @click="onSubmit">保存并使用</van-button>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./config/area.js"></script>
+    <script src="./js/address_edit/index.js"></script>
+</body>
+
+</html>

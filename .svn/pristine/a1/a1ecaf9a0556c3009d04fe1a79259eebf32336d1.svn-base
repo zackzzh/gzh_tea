@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="./css/order_detail/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="订单详情" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div v-if="item.id">
+            <div class="order-detail-top">
+                <!-- <div class="top-title">
+                    <van-icon name="description"></van-icon>
+                    <span v-if="item.order_status == 0">待付款</span>
+                    <span v-else-if="item.order_status == 1">待发货</span>
+                    <span v-else-if="item.order_status == 5">生产中</span>
+                    <span v-else-if="item.order_status == 3">待收货</span>
+                    <span v-else-if="item.order_status == 4 && item.is_comment == 0">已完成</span>
+                    <span v-else-if="item.order_status == 4 && item.is_comment == 1">已评价</span>
+                    <span v-else-if="item.order_status == 2">已取消</span>
+                    <span v-else-if="item.order_status == 6">生产完成</span>
+                    <span v-else-if="item.order_status == 7">设计完成</span>
+                    <span v-else>全部</span>
+                </div> -->
+                <div style="margin-bottom:5px;">
+                    <span v-if="item.order_status == 0">待付款</span>
+                    <span v-else-if="item.order_status == 1">待发货</span>
+                    <span v-else-if="item.order_status == 5">生产中</span>
+                    <span v-else-if="item.order_status == 3">待收货</span>
+                    <span v-else-if="item.order_status == 4 && item.is_comment == 0">已完成</span>
+                    <span v-else-if="item.order_status == 4 && item.is_comment == 1">已评价</span>
+                    <span v-else-if="item.order_status == 2">已取消</span>
+                    <span v-else-if="item.order_status == 6">生产完成</span>
+                    <span v-else-if="item.order_status == 7">设计完成</span>
+                    <span v-else>全部</span>
+                </div>
+                <div style="margin-bottom:5px;">
+                    <span v-if="item.order_type ==0">私版定制订单</span>
+                    <span v-if="item.order_type ==2">小批量定制订单</span>
+                    <span v-if="item.order_type ==1">设计收费订单</span>
+                </div>
+                <!-- <div>
+                    <span v-if="item.is_return ==2">退货已申请</span>
+                    <span v-if="item.is_return ==3">退货已完成</span>
+                    <span v-if="item.is_return ==4">退货已拒绝</span>
+                </div> -->
+            </div>
+            <div class="order-detail-address">
+                <van-cell icon="location-o" label-class="cell_address_title"
+                    :label="item.province + item.city + item.area + item.detailed_addr" center :value="item.phone">
+                    <div class="cell_address_title" slot="title">
+                        {{item.consignee}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </van-cell>
+            </div>
+            <template v-if="item.order_item && item.order_item.length>0">
+                <van-card class="commodity_card" v-for="(good, index) in item.order_item" :key="index"
+                    :title="good.goods_name">
+                    <!-- 图片 -->
+                    <van-image v-if="good.cover_image" class="commodity_img" slot="thumb" fit="contain" width="100%"
+                        height="auto" :src="API_BASE_URL + good.cover_image">
+                    </van-image>
+                    <!-- 单价X数量 -->
+                    <!-- <div class="commodity_price" slot="price">含税￥{{item.price}}</div> -->
+                    <!-- 总价 -->
+                    <div class="commodity_totalPrices" slot="num">
+                        <div>￥ {{good.price}}</div>
+                        <div class="commodity_number">x {{good.quantity}}</div>
+                    </div>
+                    <!-- <div slot="tags">
+                        <van-tag plain type="danger">配件</van-tag>
+                    </div> -->
+                </van-card>
+            </template>
+            <template v-if="item.order_type == 2">
+                <div v-for="(d,index) in item.containers" :key="index" class="detail-upload">
+                    <div class="upload_img_div">
+                        <div class="upload_title">{{d.container_name}}</div>
+                        <van-image v-else fit="contain" width="100%" height="auto" :src="API_BASE_URL + d.cover_image"
+                            @click="previewImage(d)">
+                        </van-image>
+                    </div>
+                    <!-- 容器正面 -->
+                    <div class="upload-right">
+                        <div class="right-content">
+                            <van-cell class="box_type_classify_cell" title="表面处理：" :value="d.surface_name">
+                            </van-cell>
+                            <van-cell class="box_type_classify_cell" title="字体样式：" :value="d.font_style_name">
+                            </van-cell>
+                            <van-cell class="box_type_classify_cell" title="排版参考：" :value="d.font_proportion_name">
+                            </van-cell>
+                            <van-cell class="box_type_classify_cell" title="颜色" :value="d.color_name">
+                            </van-cell>
+                            <van-cell class="box_type_classify_cell" title="工艺文字信息" :value="d.technology_describe">
+                            </van-cell>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <div class="order-detail-info" v-if="item.order_type == 1">
+                <van-cell title="包装上的产品名称" :value="item.order_item[0].devise_packaging_goods"></van-cell>
+                <van-cell title="产品名称" :value="item.order_item[0].devise_product_name"></van-cell>
+                <van-cell title="净含量" :value="item.order_item[0].devise_capacity"></van-cell>
+                <van-cell title="设计风格" :value="item.order_item[0].devise_devise_style"></van-cell>
+            </div>
+            <div class="order-detail-design"
+                v-if="item.order_type == 1 && (item.order_status == 7 || item.order_status == 4)">
+                <div class="desgin-top">
+                    <div style="margin: 10px 0px;">设计图展示</div>
+                    <!-- 轮播 -->
+                    <van-swipe :autoplay="3000">
+                        <van-swipe-item v-for="(image, index) in item.design.design_images" :key="index">
+                            <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + image"></van-image>
+                        </van-swipe-item>
+                    </van-swipe>
+                </div>
+                <div class="desgin-bottom">
+                    <div style="margin: 10px 0px;">设计描述</div>
+                    <!-- 轮播 -->
+                    {{item.design.remark}}
+                </div>
+            </div>
+            <div class="order-detail-info">
+                <van-cell title="订单编号" :value="item.order_number"></van-cell>
+                <van-cell title="下单时间" :value="item.create_time"></van-cell>
+                <van-cell title="发票" value="无" v-if="item.is_invoice==0"></van-cell>
+                <van-cell title="发票" :value="item.invoice_type" v-if="item.is_invoice==1"></van-cell>
+                <van-cell title="发票内容"
+                    :value="item.invoice_payable + item.invoice_opening_bank + item.invoice_opening_account + item.invoice_duty_paragraph + item.invoice_contact_number + item.invoice_address"
+                    v-if="item.is_invoice==1">
+                </van-cell>
+                <van-cell title="订单备注" :value="item.remark" v-if="item.remark.length>0"></van-cell>
+                <van-cell title="拒绝退款原因" :value="item.return_remark"></van-cell>
+            </div>
+            <div class="order-detail-info">
+                <van-cell title="商品金额" :value="'￥'+item.total_amount"></van-cell>
+                <van-cell title="运费" :value="'￥'+item.freight_amount"></van-cell>
+                <van-row>
+                    <van-col :span="24">
+                        <div class="order-detail-total">
+                            应付金额<span>￥{{total}}</span>
+                        </div>
+                    </van-col>
+                </van-row>
+            </div>
+            <div class="item-button" style="display: flex; justify-content: flex-end; padding:10px; background: #fff;">
+                <van-button type="primary" @click.stop="pay(item)"
+                    v-if="item.order_status == 0 || item.order_status == 6">
+                    待支付
+                </van-button>
+                <van-button type="primary" @click.stop="confirm_goods(item)" v-if="item.order_status == 3">
+                    确认收货
+                </van-button>
+                <van-button type="primary" @click.stop="design(item,0)" v-if="item.order_status == 7"
+                    style="margin-right:10px;">不满意
+                </van-button>
+                <van-button type="primary" @click.stop="design(item,1)"
+                    v-if="item.is_return== 4 && item.order_status == 7">满意
+                </van-button>
+                <van-button type="primary" @click.stop="create(item)"
+                    v-if="item.order_status == 4 && item.order_type == 1">
+                    生成订单
+                </van-button>
+                <!-- <van-button style="margin-left:10px;" type="primary" @click.stop="reback(item)"
+                    v-if="(item.order_status == 1 ||　item.order_status == 3 || item.order_status == 5 || item.order_status == 4 || item.order_status == 7 || item.order_status == 6)">
+                    申请退货
+                </van-button> -->
+            </div>
+            <van-dialog v-model="show" title="生成订单" show-cancel-button @confirm="confirm" @cancel="show = false">
+                <van-cell-group>
+                    <van-field v-model="formData.quantity" label="数量" type="text" placeholder="请输入数量">
+                    </van-field>
+                    <van-field v-model="formData.remark" label="留言" type="textarea" placeholder="请输入留言" rows="1"
+                        autosize>
+                    </van-field>
+                </van-cell-group>
+            </van-dialog>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/order_detail/index.js"></script>
+</body>
+
+</html>

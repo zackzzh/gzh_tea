@@ -1,0 +1,55 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7;
+  min-height: calc(100vh);
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .cell_div {
+  padding: .4rem .106667rem 0 .106667rem;
+}
+html .main_div .cell_div .cell_item {
+  margin-bottom: .16rem;
+  border-radius: .133333rem;
+  box-shadow: 0 0 0.453333rem 0 rgba(18, 46, 116, 0.1);
+}
+html .main_div .logout_btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: PingFang SC;
+  font-size: .48rem;
+  font-weight: 500;
+}
+html .main_div .input_group {
+  margin: .4rem .106667rem 0 .106667rem;
+  border-radius: .133333rem;
+  box-shadow: 0 0 0.453333rem 0 rgba(18, 46, 116, 0.1);
+}
+html .main_div .input_group .input_code {
+  border-radius: .133333rem;
+  border: none;
+  background: #74B6B5;
+}
+html .main_div .input_group .van-cell:first-child {
+  border-radius: .133333rem .133333rem 0 0;
+}
+html .main_div .input_group .van-cell:last-child {
+  border-radius: 0 0 .133333rem .133333rem;
+}
+html .main_div .bound_div {
+  margin: .4rem 0 0 0;
+  padding: 0 .106667rem;
+}
+html .main_div .bound_div .bound_btn {
+  width: 100%;
+  border: none;
+  background: #007D7B;
+  border-radius: .133333rem;
+  font-family: PingFang SC;
+  font-size: .48rem;
+  font-weight: 500;
+}

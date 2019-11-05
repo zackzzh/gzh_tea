@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>提现记录</title>
+    <link rel="stylesheet" href="./css/withdrawal_record/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="提现记录" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="main_top">
+            <div class="top-one">
+                总提现金额（元）
+            </div>
+            <div class="top-two">
+                {{my_money}}
+            </div>
+            <div class="top-three">
+                共计{{data.length}}笔
+            </div>
+        </div>
+        <van-row class="main_mid_one">
+            <van-col :span="8">提现日期</van-col>
+            <van-col :span="8">提现金额（元）</van-col>
+            <van-col :span="8">状态</van-col>
+        </van-row>
+        <van-row class="main_mid_two" v-for="(item, index) in data" :key="index">
+            <van-col :span="8">{{item.create_time}}</van-col>
+            <van-col :span="8" :class="{'active':item.status == 2}">{{item.amount}}</van-col>
+            <van-col :span="8">
+                <span v-if="item.status ==0">申请中</span>
+                <span v-if="item.status ==1">提现成功</span>
+                <span v-if="item.status ==2">提现拒绝</span>
+            </van-col>
+        </van-row>
+    </div>
+    <script src=" ./config/bodyjs.js"> </script>
+    <script src="./js/withdrawal_record/index.js">
+    </script>
+</body>
+
+</html>

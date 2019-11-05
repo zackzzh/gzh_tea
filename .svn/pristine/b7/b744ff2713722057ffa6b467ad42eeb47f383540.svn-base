@@ -1,0 +1,29 @@
+<div id="header">
+    <van-nav-bar v-if="backIcon" :title="headerTitle" />
+    <van-nav-bar v-else :title="headerTitle" left-arrow @click-left="onClickLeft" />
+</div>
+<script>
+    new Vue({
+        el: "#header",
+        created() {
+            // if (window.location.pathname.includes("index")) {
+            //     this.backIcon = false
+            // } else {
+            //     this.backIcon = true
+            // }
+        },
+        data() {
+            return {
+                backIcon: true,
+                headerTitle: '义统定制'
+            }
+        },
+        methods: {
+            onClickLeft() {
+                // console.log("dotsSum", dotsSum)
+                // window.location.href = dotsSum + "mindex.html"
+                // $go({ path: "/" })
+            }
+        },
+    })
+</script>

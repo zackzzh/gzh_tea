@@ -1,0 +1,222 @@
+[v-cloak] {
+    display: none;
+}
+
+.main_div {
+    padding-bottom: 1.6rem;
+
+    .banner_div {
+        position: relative;
+
+        .search_bar_row {
+            width      : 100%;
+            // position: absolute;
+            // top     : 0;
+            // z-index : 2;
+
+            .search_bar_left {
+                text-align: center;
+
+                span {
+                    font-size  : .533333rem;
+                    font-weight: bold;
+                }
+            }
+
+            .van-search__content {
+                background: rgba(247, 247, 247, 0.8);
+            }
+        }
+    }
+
+    .index_item_row {
+        text-align: center;
+        margin-top: .346667rem;
+
+
+        .index_item_col {
+            padding: 0 .4rem;
+
+            .item_title {
+                margin   : .32rem 0;
+                font-size: .32rem;
+                color    : #333333;
+            }
+        }
+    }
+
+    .index_line {
+        width     : 100%;
+        height    : 20px;
+        background: rgba(247, 247, 247, 1);
+    }
+
+    .more_news {
+        width     : 100%;
+        text-align: end;
+        margin    : .106667rem 0 .186667rem 0;
+
+        span {
+            padding-right: .506667rem;
+            font-size    : .24rem;
+        }
+    }
+
+    .news_row {
+        padding: 0 .4rem;
+
+        .news_col_img {
+            padding-right: .24rem;
+        }
+
+        .news_items_col {
+            border-left: 1px solid #E5E5E5;
+
+            .news_item_row {
+                margin-bottom: .133333rem;
+                padding-left : .24rem;
+
+                .news_item_col {
+                    overflow     : hidden;
+                    text-overflow: ellipsis;
+                    white-space  : nowrap;
+
+                    // span {
+                    //     padding      : .106667rem .133333rem;
+                    //     border-radius: .24rem;
+                    //     font-family  : Adobe Heiti Std;
+                    //     font-size    : .186667rem;
+                    //     color        : #ffffff;
+                    //     background   : rgba(215, 13, 25, 0.5);
+                    // }
+                }
+            }
+        }
+    }
+
+    .newbie_row {
+        margin-top: .453333rem;
+        padding   : 0 .533333rem;
+
+        .newbie_left {
+            padding-right: .08rem
+        }
+
+        .newbie_right {
+            padding-left: .08rem
+        }
+    }
+
+    .main_div_top {
+        text-align   : center;
+        width        : 100%;
+        white-space  : nowrap;
+        overflow     : hidden;
+        text-overflow: ellipsis;
+        font-size    : .373333rem;
+    }
+
+    .recommend_title {
+        margin-top    : .4rem;
+        text-align    : center;
+        font-family   : PingFang SC;
+        font-size     : .426667rem;
+        font-weight   : 500;
+        color         : #383838;
+        letter-spacing: 4;
+
+        span {
+            font-size  : .426667rem;
+            font-weight: bold;
+            color      : #565656;
+        }
+    }
+
+    .card_row {
+        margin-top: .293333rem;
+        padding   : 0 .08rem;
+
+        .card_col {
+            padding      : 0 .186667rem;
+            margin-bottom: .266667rem;
+
+            .card_div {
+                // border     : 1px solid rgba(0, 0, 0, 0.15);
+                padding-bottom: .24rem;
+                box-shadow    : 0 0 .16rem 0 rgba(0, 0, 0, 0.15);
+                border-radius : .133333rem;
+
+                .van-image__img {
+                    width : 100%;
+                    height: 4.546667rem;
+                }
+
+                .card_title_row {
+                    padding: .293333rem 0 0 .266667rem;
+
+                    .card_title_col {
+                        div {
+                            font-family: PingFang SC;
+                            font-size  : .213333rem;
+                            font-weight: 500;
+                            color      : rgba(0, 103, 101, 0.62);
+                        }
+                    }
+                }
+
+                .price_row {
+                    margin : .346667rem 0 .266667rem 0;
+                    padding: 0 .186667rem 0 .266667rem;
+
+                    .price_col {
+                        font-family: PingFang SC;
+                        font-size  : 14px;
+                        font-weight: 500;
+                        color      : #006765;
+
+                        span {
+                            margin-left: .133333rem;
+                            font-size  : .32rem;
+                        }
+                    }
+
+                    .price_btn_col {
+                        .price_btn {
+                            margin       : 0;
+                            padding      : .106667rem .16rem;
+                            height       : auto;
+                            outline      : none;
+                            border       : none;
+                            border-radius: .133333rem;
+                            line-height  : .506667rem;
+                            font-family  : PingFang SC;
+                            font-size    : .32rem;
+                            font-weight  : 500;
+                            background   : #007D7B;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .deseno_row {
+        padding: .586667rem .613333rem 0 .72rem;
+
+        .deseno_time {
+            padding    : 0 0 0 .373333rem;
+            font-family: PingFang SC;
+            font-size  : .32rem;
+            font-weight: 500;
+            color      : #676767;
+        }
+
+        .deseno_more {
+            font-family: PingFang SC;
+            font-size  : .32rem;
+            font-weight: 500;
+            color      : #666666;
+            text-align : right;
+        }
+    }
+}

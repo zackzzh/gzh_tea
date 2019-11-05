@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-设计</title>
+    <link rel="stylesheet" href="./css/design/index.css" />
+    <link rel="stylesheet" href="./css/design/boxType.css" />
+    <link rel="stylesheet" href="./css/design/twoStep.css">
+    <link rel="stylesheet" href="./css/design/threeStep.css">
+    <link rel="stylesheet" href="./css/design/fourStep.css">
+    <link rel="stylesheet" href="./css/design/fiveStep.css">
+    <script src="./config/header.js"></script>
+    <!-- <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="我要设计" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <!-- <step>公共步骤条</step> -->
+        <div class="box_type_step_div">
+            <div class="box_type_step_img_div">
+                <van-image class="box_type_step_img" fit="contain" width="100%" height="auto"
+                    src="./img/design/step01.png" v-if="step==0">
+                </van-image>
+                <van-image class="box_type_step_img" v-else-if="step==1" fit="contain" width="100%" height="auto"
+                    src="./img/design/step02.png">
+                </van-image>
+                <van-image class="box_type_step_img" v-else-if="step==2" fit="contain" width="100%" height="auto"
+                    src="./img/design/step03.png">
+                </van-image>
+                <van-image class="box_type_step_img" v-else-if="step==3" fit="contain" width="100%" height="auto"
+                    src="./img/design/step04.png">
+                </van-image>
+                <van-image class="box_type_step_img" v-else-if="step==4" fit="contain" width="100%" height="auto"
+                    src="./img/design/step05.png">
+                </van-image>
+            </div>
+            <van-row class="box_type_step_row" type="flex" justify="space-between" align="center">
+                <van-col class="box_type_step_col">选择<br />盒型</van-col>
+                <van-col class="box_type_step_col">选择<br />设计类别</van-col>
+                <van-col class="box_type_step_col">填写<br />设计要求</van-col>
+                <van-col class="box_type_step_col">提交<br />订单</van-col>
+                <van-col class="box_type_step_col">支付<br />设计押金</van-col>
+            </van-row>
+        </div>
+        <!--  -->
+        <div id="box_type_div" class="box_type_div" v-if="step==0" style="margin-bottom: 0px">
+            <!-- 行业分类 -->
+            <div class="box_type_classify_div">
+                <div class="box_type_classify_title">行业分类</div>
+                <my-cell :data="industryList" @click="onRadio"></my-cell>
+            </div>
+            <!-- 材质分类 -->
+            <div id="materialId" class="box_type_classify_div">
+                <div class="box_type_classify_title">材质分类</div>
+                <van-checkbox-group v-model="material_ids" @change="onClickMaterial">
+                    <van-cell-group>
+                        <van-cell class="box_type_classify_cell" :title="item.name" v-for="(item,index) in materialList"
+                            :key="index">
+                            <van-checkbox slot="right-icon" :name="item.id">
+                            </van-checkbox>
+                        </van-cell>
+                    </van-cell-group>
+                </van-checkbox-group>
+            </div>
+            <!-- 列表 -->
+            <van-row class="box_type_row">
+                <van-col class="box_type_col" span=8 v-for="(item,index) in productList">
+                    <div class="box_type_card_div" @click="onClickBtn(item)">
+                        <van-image class="box_type_card_img" fit="contain" width="100px" height="100px"
+                            :src="API_BASE_URL + item.cover_image">
+                        </van-image>
+                        <div class="box_type_card_title">{{item.product_name}} / {{item.type_name}}</div>
+                        <div class="box_type_card_subtitle">设计押金: ¥{{item.prepaid_amount}}元</div>
+                        <div class="box_type_card_subtitle">设计次数: {{item.design_number}}次</div>
+                        <van-button class="box_type_card_btn" type="primary">在线报价
+                        </van-button>
+                    </div>
+                </van-col>
+            </van-row>
+            <!-- <my-cell :data="materialList" @click="onRadio"></my-cell> -->
+        </div>
+        <div id="box_type_div" class="box_type_div" v-else-if="step==1">
+            <van-swipe :autoplay="3000">
+                <van-swipe-item v-for="(image, index) in devisedetail.show_pictures" :key="index">
+                    <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + image" />
+                    </van-image>
+                </van-swipe-item>
+            </van-swipe>
+            <div class="twoStep-detail">
+                <div class="detail-title">{{devisedetail.product_name}}</div>
+                <div class="detail-sub detail-subtitle">全新设计</div>
+                <div class="detail-sub detail-sub-one">
+                    服务明细：{{devisedetail.service_detail}}
+                </div>
+                <div class="detail-sub detail-sub-two">
+                    交付标准：{{devisedetail.delivery_criteria}}
+                </div>
+                <div class="detail-sub detail-sub-three">
+                    附加服务：{{devisedetail.additional_service}}
+                </div>
+                <div class="detail-sub detail-sub-four">
+                    交稿时间：{{devisedetail.delivery_time}}
+                </div>
+                <div class="detail-sub detail-sub-five">
+                    您需要支付 ￥{{devisedetail.prepaid_amount}} 设计押金。
+                </div>
+                <div class="detail-sub detail-sub-six">
+                    所付押金可在此订单包装生产后，全部用于抵销货款(优惠券不参与抵扣)。
+                </div>
+            </div>
+            <div class="twoStep-button">
+                <div class="button-left" @click="next(0)">重新选盒型</div>
+                <div class="button-right" @click="next(2)">确认此盒型</div>
+            </div>
+        </div>
+        <div id="box_type_div" class="box_type_div" v-else-if="step==2">
+            <div class="threeStep-detail">
+                <div class="detail-title">
+                    填写设计需求 <span>(必填)</span>
+                </div>
+                <van-cell-group>
+                    <van-field v-model="formData.packaging_goods" label="产品名称" placeholder="请输入您需要体现在包装上的产品名称">
+                    </van-field>
+                    <van-field v-model="formData.product_name" label="所装产品" placeholder="请输入所装产品名称"></van-field>
+                    <van-field v-model="formData.capacity" label="净含量" placeholder="克重或毫升"></van-field>
+                    <van-field class="box_type_classify_cell" readonly clickable label="设计风格" :value="styleName"
+                        placeholder="选择您倾向的设计风格" @click="isShowStyle = true"
+                        right-icon="box_type_cell_right_icon iconfont icon-jiantou2"></van-field>
+                    <van-field v-model="formData.customer_name" label="如何称呼您" placeholder="请填写您的真实姓名"></van-field>
+                    <van-field v-model="formData.phone" label="手机号码" placeholder="设计师将通过此号码联系您进行设计沟通"></van-field>
+                </van-cell-group>
+                <van-popup v-model="isShowStyle" position="bottom">
+                    <van-picker show-toolbar :columns="styleColumns" @cancel="isShowStyle = false" @confirm="onConfirm"
+                        value-key="style_name"></van-picker>
+                </van-popup>
+            </div>
+            <div class="threeStep-detail">
+                <div class="detail-title">
+                    上传设计附件
+                </div>
+                <div class="detail-upload">
+                    <div class="upload-left" v-if="loadImg.length == 0">
+                        <van-image class="box_type_card_img" fit="contain" width="100%" height="auto"
+                            :src="loadImg.length>0?loadImg:image">
+                        </van-image>
+                    </div>
+                    <div class="upload-right" :class="{'loadimg_exit':loadImg.length>0}">
+                        <van-uploader :after-read="afterRead" v-model="loadImg" preview-image preview-full-image>
+                            <van-button plain type="primary" class="right-button">点击上传</van-button>
+                        </van-uploader>
+                        <div class="right-content">
+                            温馨提示：如附件不能上传，请将设计所需的文件发送至hyzy@hucais.com邮箱,包含logo源文件（CDR/AI/PDF/EPS）、内装物图片、需要体现在包装上的元素等
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="threeStep-detail">
+                <div class="detail-command">
+                    <van-field class="upload_Textarea" :value="formData.remark" type="textarea" rows="1" autosize
+                        v-model="formData.remark" placeholder="请备注设计的要求：" />
+                </div>
+            </div>
+            <div class="threeStep-button">
+                <div class="button-left">
+                    <van-checkbox v-model="checked" slot="right-circle">
+                        我已阅读并同意<a href="javascript:;">《义统智印服务计划》</a>
+                    </van-checkbox>
+                </div>
+                <div class="button-right" @click="next(3)">确认提交</div>
+            </div>
+        </div>
+        <div id="box_type_div" class="box_type_div" v-else-if="step==3">
+            <div class="fourStep-detail">
+                <div v-for="(item, index) in list" :key="item" class="content_div_card">
+                    <van-card class="commodity_card" :title="item.goods_name"
+                        style="background: #ffffff;padding-bottom: 10px; border-bottom:1px solid #e5e5e5;">
+                        <van-image class="commodity_img" slot="thumb" fit="contain" width="100%" height="auto"
+                            :src="API_BASE_URL + item.cover_image">
+                        </van-image>
+                        <div class="commodity_price" slot="price">单价：￥{{item.price}}</div>
+                        <div class="commodity_totalPrices" slot="num">
+                            ￥ {{item.price * item.quantity}}
+                            <div class="commodity_num"> X {{item.quantity}}</div>
+                        </div>
+                    </van-card>
+                </div>
+            </div>
+            <div class="fourStep-detail">
+                <van-cell v-if="address && address.consignee" label-class="cell_address_title"
+                    :label="address.province + address.city + address.area + address.detailed_addr" center is-link
+                    @click="toAddress">
+                    <div class="cell_address_title" slot="title">
+                        {{address.consignee}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{address.phone}}
+                    </div>
+                </van-cell>
+                <van-cell v-else tite-class="cell_remark" value-class="cell_remark" title="地址" value="添加地址"
+                    @click="toAddress" is-link></van-cell>
+                <van-cell tite-class="cell_remark" value-class="cell_remark" title="发票信息" is-link :value="invoice_text"
+                    @click="needInvoice">
+                </van-cell>
+                <van-field class="upload_Textarea" :value="remark" label="订单备注 :" v-model="remark" :disable="true"
+                    type="textarea" rows="2" autosize placeholder="请填写订单备注" />
+
+            </div>
+            <!-- 选项，弹窗 -->
+            <div class="fourStep-button">
+                <div class="button-left">
+                    合计 <span class="span-one">￥{{total}}</span> <span class="span-two">(不含运费)</span>
+                </div>
+                <div class="button-right" @click="next(4)">结算</div>
+            </div>
+            </van-action-sheet>
+        </div>
+        <div id="box_type_div" class="box_type_div" v-else-if="step==4">
+            <div class="fiveStep-detail">
+                <div class="detail-title">
+                    订单编号:{{orderdetail.order_number}}
+                </div>
+                <div class="detail-content">
+                    <div class="detail-div">订单总金额:￥{{orderdetail.total_amount}}</div>
+                    <div class="detail-div">此次应付:￥{{orderdetail.total_amount}}</div>
+                    <div class="detail-div">
+                        合同签约：
+                        <van-radio-group v-model="cradio">
+                            <!-- <van-radio name="1" @click="clickcradio">在线签约</van-radio> -->
+                            <van-radio name="0">线下签约</van-radio>
+                        </van-radio-group>
+                    </div>
+                </div>
+            </div>
+            <div class="fiveStep-detail">
+                <van-radio-group v-model="pradio">
+                    <van-cell-group>
+                        <van-cell title="微信支付" clickable @click="pradio = '1'">
+                            <van-radio slot="right-icon" name="1" />
+                            </van-radio>
+                        </van-cell>
+                    </van-cell-group>
+                </van-radio-group>
+            </div>
+            <div style="margin: 10px;color: #666;font-size: 14px;">
+                设计收费订单下单全额支付定金
+            </div>
+            <div class="fiveStep-button">
+                <div class="button-right" @click="pay">去支付</div>
+            </div>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <!-- <script src="./demo/js/bootstrap-treeview.js"></script> -->
+    <script src="./js/design/index.js"></script>
+</body>
+
+</html>

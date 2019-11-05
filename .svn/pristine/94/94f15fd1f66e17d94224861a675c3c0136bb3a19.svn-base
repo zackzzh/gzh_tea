@@ -1,0 +1,133 @@
+html {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #F7F7F7 !important;
+}
+html [v-cloak] {
+  display: none;
+}
+html .main_div {
+  position: relative;
+}
+html .main_div .item-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 10px;
+  border-top: 1px solid #e5e5e5;
+}
+html .main_div .item-button .van-button {
+  margin: 10px 0px;
+  height: 30px;
+  line-height: 30px;
+}
+html .main_div .order-detail-top {
+  background: #007D7B;
+  color: #fff;
+  padding: .266667rem;
+}
+html .main_div .order-detail-top .top-title {
+  font-size: .426667rem;
+}
+html .main_div .order-detail-top .top-title .van-icon-description {
+  font-size: .533333rem;
+  position: relative;
+  top: 4px;
+}
+html .main_div .order-detail-address {
+  margin: .266667rem 0px;
+}
+html .main_div .order-detail-info {
+  margin: .266667rem 0px;
+}
+html .main_div .commodity_card {
+  margin-top: 0;
+  padding: .346667rem .266667rem;
+  border-radius: .133333rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #f7f7f7;
+}
+html .main_div .commodity_card .van-card__num {
+  text-align: right;
+}
+html .main_div .commodity_card .van-card__title {
+  font-family: PingFang SC;
+  font-size: .373333rem;
+  font-weight: 500;
+  color: #007D7B;
+}
+html .main_div .commodity_card .commodity_img {
+  border: 1px solid #EEEEEE;
+}
+html .main_div .commodity_card .commodity_price {
+  margin-top: .533333rem;
+  font-size: .32rem;
+  color: #007D7B;
+}
+html .main_div .commodity_card .commodity_totalPrices {
+  margin-top: .533333rem;
+  font-family: PingFang SC;
+  font-size: .426667rem;
+  font-weight: 500;
+  color: #007D7B;
+}
+html .main_div .commodity_card .commodity_number {
+  font-size: .32rem;
+  color: #007D7B;
+}
+html .main_div .van-dialog__header {
+  margin-bottom: 25px;
+}
+html .main_div .detail-upload {
+  display: flex;
+  background: #fff;
+  margin: 10px 0px;
+  padding: 10px;
+}
+html .main_div .detail-upload .upload_img_div {
+  width: 6.666667rem;
+}
+html .main_div .detail-upload .upload-right {
+  width: 8rem;
+}
+html .main_div .order-detail-total {
+  padding: 10px;
+  text-align: right;
+  font-size: 16px;
+  background: #fff;
+}
+html .main_div .order-detail-total span {
+  color: red;
+}
+html .main_div .order-detail-design {
+  background: #fff;
+  margin: 10px 0;
+  padding: 10px;
+}
+html .main_div .pay_btn_row {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: #74B6B5;
+}
+html .main_div .pay_btn_row .pay_total {
+  font-family: PingFang SC;
+  font-size: .4rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+html .main_div .pay_btn_row .pay_total span {
+  color: #007D7B;
+}
+html .main_div .pay_btn_row .pay_btn_col .pay_btn {
+  width: 100%;
+  height: auto;
+  line-height: .4rem;
+  padding: .4rem 0;
+  font-size: .4rem;
+  font-weight: 500;
+  border: none;
+  background: #007D7B;
+}

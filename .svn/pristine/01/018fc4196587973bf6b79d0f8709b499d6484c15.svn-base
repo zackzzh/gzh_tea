@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-确认订单</title>
+    <link rel="stylesheet" href="./css/confirmOrder/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="确认订单" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="content_div">
+            <div v-for="(item, index) in commodity" :key="item" class="content_div_card">
+                <van-card class="commodity_card" :title="item.goods_name"
+                    style="background: #ffffff;padding-bottom: 10px; border-bottom:1px solid #e5e5e5;">
+                    <!-- 图片 -->
+                    <van-image class="commodity_img" slot="thumb" fit="contain" width="100%" height="auto"
+                        :src="API_BASE_URL + item.cover_image">
+                    </van-image>
+                    <!-- 单价X数量 -->
+                    <div class="commodity_price" slot="price" v-if="">含税: ￥{{(item.price)}}</div>
+                    <!-- 总价 -->
+                    <div class="commodity_totalPrices" slot="num">
+                        ￥ {{(item.price * item.quantity).toFixed(2)}}
+                        <div class="commodity_num"> X {{item.quantity}}</div>
+                    </div>
+                </van-card>
+            </div>
+            <div class="cell_div">
+                <van-cell v-if="address && address.id" label-class="cell_address_title"
+                    :label="address.province + address.city + address.area + address.detailed_addr" url="./address.html"
+                    center is-link>
+                    <div class="cell_address_title" slot="title">
+                        {{address.consignee}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{address.phone}}
+                    </div>
+                </van-cell>
+                <van-cell v-else tite-class="cell_remark" value-class="cell_remark" title="地址" value="添加地址"
+                    @click="toAddress" is-link></van-cell>
+                <van-cell tite-class="cell_remark" value-class="cell_remark" title="发票信息" :value="invoice_text"
+                    @click="needInvoice" is-link>
+                </van-cell>
+                <van-cell tite-class="cell_remark"
+                    v-if="customerInfo.integral_config && customerInfo.integral_config.deduction_status === '1' && customerInfo.integral_config.consumption_interal && customerInfo.integral_config.deduction_amount"
+                    value-class="cell_remark" title="积分"
+                    :label="customerInfo.integral_config.consumption_interal + '积分抵' + customerInfo.integral_config.deduction_amount+'元'">
+                    <van-switch slot="default" v-model="checked" size="24px"></van-switch>
+                </van-cell>
+                <van-field class="upload_Textarea" v-if="checked" :value="integral" label="积分输入" v-model="integral"
+                    type="number" rows="2" autosize placeholder="请填写积分" @blur="integralChange"></van-field>
+                <van-field class="upload_Textarea" :value="remark" label="订单备注 :" v-model="remark" type="textarea"
+                    rows="2" autosize placeholder="请填写订单备注"></van-field>
+            </div>
+            <div class="pay_cell_div">
+                <van-radio-group class="pay_group_div" v-model="payRadio">
+                    <van-cell-group>
+                        <van-cell title="微信支付" clickable icon="wechat" @click="payRadio = '1'">
+                            <van-radio slot="right-icon" name="1" checked-color="#01C07B"></van-radio>
+                        </van-cell>
+                        <van-cell title="银行转账" clickable icon="card" @click="payRadio = '2'">
+                            <van-radio slot="right-icon" name="2" checked-color="#01C07B"></van-radio>
+                        </van-cell>
+                    </van-cell-group>
+                </van-radio-group>
+            </div>
+            <div class="order-detail-info">
+                <van-cell title="商品金额" :value="'￥'+(total).toFixed(2)"></van-cell>
+                <van-cell title="运费" :value="'+' +  freight_amount" class="yunfei"></van-cell>
+                <van-cell v-if="integral_price>0" title="积分"
+                    :value="'-￥'+ integral_price "
+                    class="integral"></van-cell>
+                <van-row>
+                    <van-col :span="24">
+                        <div class="order-detail-total">
+                            应付金额<span>￥{{(total).toFixed(2)+freight_amount-integral_price}}</span>
+                        </div>
+                    </van-col>
+                </van-row>
+            </div>
+            <div v-if="order_type == 0" style="margin: 10px;color: #666;font-size: 14px;">
+                私版定制订单下单预付50%定金，成品交货前付清尾款
+            </div>
+            <div v-if="order_type == 2" style="margin: 10px;color: #666;font-size: 14px;">
+                小批量定制订单下单全额支付定金
+            </div>
+        </div>
+        <van-row class="pay_btn_row" type="flex" justify="center" align="center">
+            <van-col span="12" class="pay_total">合计：<span>￥{{(total).toFixed(2)+freight_amount-integral_price}}</span></van-col>
+            <van-col span="12" class="pay_btn_col">
+                <van-button class="pay_btn" type="primary" @click="create">支付</van-button>
+            </van-col>
+        </van-row>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/confirmOrder/index.js"></script>
+</body>
+
+</html>

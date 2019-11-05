@@ -1,0 +1,123 @@
+body {
+    flex              : 1;
+    // justify-content: center;
+    align-items       : center;
+    min-height        : calc(100vh);
+    background        : #f7f7f7;
+
+    .van-tabs__line {
+        background-color: #007D7B;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        .order {
+            margin-bottom: .266667rem;
+
+            .order-item {
+                background: #fff;
+                margin-top: .266667rem;
+
+                .van-button {
+                    margin     : 10px 0px;
+                    height     : 30px;
+                    line-height: 30px;
+                }
+
+                .item-button {
+                    display        : flex;
+                    justify-content: flex-end;
+                    padding        : 0px 10px;
+
+                    border-top: 1px solid #e5e5e5;
+
+                    .van-button {
+                        margin     : 10px 0px;
+                        height     : 30px;
+                        line-height: 30px;
+                    }
+                }
+
+                .item-top {
+                    display        : flex;
+                    align-items    : center;
+                    justify-content: space-between;
+                    padding        : 5px .426667rem;
+                    border-bottom  : 1px solid #f7f7f7;
+
+                    .top-left {
+                        color: #007D7B;
+                    }
+
+                    .top-right {
+                        color: #E2574C;
+                    }
+                }
+
+                .commodity_card {
+                    margin-top      : 0;
+                    padding         : .346667rem .266667rem;
+                    border-radius   : .133333rem;
+                    background      : #FFFFFF;
+                    // box-shadow   : 0 0 .466667rem 0 rgba(18, 46, 116, 0.1);
+                    border-bottom   : 1px solid #f7f7f7;
+
+                    .van-card__num {
+                        text-align: right;
+                    }
+
+                    .van-card__title {
+                        font-family: PingFang SC;
+                        font-size  : .373333rem;
+                        font-weight: 500;
+                        color      : #007D7B;
+                    }
+
+                    .commodity_img {
+                        border: 1px solid #EEEEEE;
+                    }
+
+                    .commodity_price_fun() {
+                        margin-top: .533333rem;
+                    }
+
+                    .commodity_price {
+                        .commodity_price_fun;
+                        font-size: .32rem;
+                        color    : #007D7B;
+                    }
+
+                    .commodity_totalPrices {
+                        .commodity_price_fun;
+                        font-family: PingFang SC;
+                        font-size  : .426667rem;
+                        font-weight: 500;
+                        color      : #007D7B;
+                    }
+
+                    .commodity_number {
+                        font-size: .32rem;
+                        color    : #007D7B;
+                    }
+                }
+
+                .item-bottom {
+                    display        : flex;
+                    align-items    : center;
+                    justify-content: flex-end;
+                    height         : .96rem;
+                    color          : #007D7B;
+                    padding        : 0px .426667rem;
+                }
+            }
+        }
+
+        .van-dialog__header {
+            margin-bottom: 25px;
+        }
+    }
+
+}

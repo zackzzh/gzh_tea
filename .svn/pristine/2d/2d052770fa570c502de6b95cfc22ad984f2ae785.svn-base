@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-账户管理</title>
+    <link rel="stylesheet" href="./css/account/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div">
+        <van-nav-bar title="账户管理" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="cell_div">
+            <!-- <van-cell class="cell_item" title="修改密码" is-link to="address"></van-cell> -->
+            <van-cell class="cell_item" title="绑定手机" is-link url="/account_edit.html"></van-cell>
+            <van-cell class="cell_item" title="关于我们" is-link url="/about_us.html"></van-cell>
+        </div>
+        <!-- <van-button class="logout_btn" type="danger" @click="onLogout">退出登录</van-button> -->
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/account/index.js"></script>
+</body>
+
+</html>

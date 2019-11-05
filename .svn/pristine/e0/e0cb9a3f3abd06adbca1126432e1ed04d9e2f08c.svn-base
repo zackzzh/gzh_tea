@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-个人中心</title>
+    <link rel="stylesheet" href="./css/mine/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <div class="header_div">
+            <van-row class="nickname_row" type="flex" align="center">
+                <van-col class="nickname_col_img" span="5">
+                    <van-image round width="2rem" height="2rem" :src="customerInfo.head_img" />
+                </van-col>
+                <van-col span=10>
+                    <div class="nickname_title">{{customerInfo.username}}</div>
+                    <div class="nickname_phone">{{customerInfo.phone}}</div>
+                </van-col>
+            </van-row>
+            <van-row class="items_row" type="flex" justify="center" align="center">
+                <van-col class="item_col" span="6" v-for="(item, index) in itemArr" :key="index">
+                    <div @click="onClick(item)">
+                        <van-image width="40px" height="40px" :src="item.url"></van-image>
+                        <div class="item_title">{{item.title}}({{customerInfo[item.type]}})</div>
+                    </div>
+                </van-col>
+            </van-row>
+        </div>
+        <div class="app_div">
+            <div class="app_mian_title">功能应用</div>
+            <van-row class="app_row">
+                <van-col class="app_col" span="8" v-for="(appItem, appIndex) in appArr" :key="appIndex">
+                    <div @click="onApp(appItem)">
+                        <van-image width="60%" height="auto" :src="appItem.url"></van-image>
+                        <div class="app_title">
+                            {{appItem.title}}
+                            <span v-if="appItem.title.includes('积分')" style="color:#007D7B">
+                                {{customerInfo.integral}}
+                            </span>
+                            <span v-else-if="appItem.title.includes('佣金')" style="color:#FF616E">
+                                ¥ {{customerInfo.balance}}
+                            </span>
+                        </div>
+                    </div>
+                </van-col>
+            </van-row>
+        </div>
+        <van-tabbar v-model="active" inactive-color="#1C1F1F" @change="onChange">
+            <van-tabbar-item icon="wap-home">首页</van-tabbar-item>
+            <van-tabbar-item icon="bag-o">现货商城</van-tabbar-item>
+            <van-tabbar-item icon="shopping-cart-o">购物车</van-tabbar-item>
+            <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+        </van-tabbar>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/mine/index.js"></script>
+</body>
+
+</html>

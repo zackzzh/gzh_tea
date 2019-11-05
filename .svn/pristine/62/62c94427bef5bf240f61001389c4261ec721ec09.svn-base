@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新手指南</title>
+    <script src="./config/header.js"></script>
+</head>
+<style>
+    .guide {
+        margin: 10px;
+    }
+
+    .title {
+        margin: 10px 0px;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="新手指南" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="guide">
+            <div class="title">小批量商品定制流程</div>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl1.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl2.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl3.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl4.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl5.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/xpl6.png">
+            </van-image>
+            <div class="title">设计商品流程</div>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj1.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj2.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj3.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj4.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj5.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj6.png">
+            </van-image>
+            <van-image fit="contain" width="100%" height="auto" src="./img/guide/sj7.png">
+            </van-image>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/guide/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+new Vue({
+    el: '#main_div',
+    data() {
+        return {
+            my_money: '101437.00',
+
+            data: [{
+                time: '2018-3-9',
+                money: '-12220.00',
+                status: '提现中'
+            }, {
+                time: '2018-3-9',
+                money: '-12220.00',
+                status: '提现失败'
+            }, {
+                time: '2018-3-9',
+                money: '-12220.00',
+                status: '提现成功'
+            }]
+        }
+    },
+    mounted() {
+        this.load()
+    },
+    methods: {
+        /**
+         * 
+         * @param {*} val 
+         */
+        load() {
+            $myAPi.withdrawals().then((res) => {
+                this.my_money = res.data.total
+                this.data = res.data.list
+            })
+        },
+        onClickLeft(val) {
+            $back();
+        },
+        /**
+         * 跳转新闻详情
+         */
+        handleDetail(item) {}
+    }
+});

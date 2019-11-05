@@ -1,0 +1,65 @@
+.main_div {
+    // justify-content: center;
+    // align-items: center;
+    text-align: center;
+
+    .comment_title {
+        margin: .133333rem 0;
+        font-family: Source Han Sans CN;
+        font-size: .586667rem;
+        font-weight: 500;
+        color: #333333;
+    }
+
+    .comment_subtitle {
+        font-family: Source Han Sans CN;
+        font-size: .4rem;
+        font-weight: 500;
+        color: #333333;
+    }
+
+    .comment_img {
+        margin: .48rem 0 .133333rem 0;
+    }
+
+    .comment_name_fun() {
+        font-size: .373333rem;
+        font-family: Source Han Sans CN;
+        color: #333333;
+        font-weight: 400;
+    }
+
+    .comment_name {
+        .comment_name_fun;
+    }
+
+    .comment_title2 {
+        .comment_name_fun;
+        margin: .8rem 0 .533333rem 0;
+    }
+
+    .van-rate__item {
+        margin: 0 .266667rem;
+    }
+
+    .input_group {
+        margin: .453333rem .533333rem;
+
+        .van-cell {
+            background: #F5F5F5;
+        }
+    }
+
+    .comment_btn {
+        // width: 100%;
+        padding: 0 30%;
+        margin-top: .266667rem;
+        border: none;
+        border-radius: .586667rem;
+        font-family: PingFang SC;
+        font-weight: 500;
+        font-size: .4rem;
+        line-height: .4rem;
+        background: #007D7B;
+    }
+}

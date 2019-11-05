@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>佣金提现</title>
+    <link rel="stylesheet" href="./css/withdrawal/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="佣金提现" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div class="main-record" @click="toRecord">
+            提现记录
+        </div>
+        <div class="main_top">
+            <div class="top-one">
+                我的余额
+            </div>
+            <div class="top-two">
+                {{my_money}}
+            </div>
+        </div>
+        <div class="main_mid">
+            <van-cell-group>
+                <van-field v-model="formData.amount" type="text" label="提现金额" placeholder="请输入提现金额"></van-field>
+                </van-field>
+                <van-field v-model="formData.username" type="text" label="姓名" placeholder="请输入姓名"></van-field>
+                </van-field>
+                <van-field v-model="formData.bank_card" type="text" label="银行卡" placeholder="请输入提现银行卡账号"></van-field>
+            </van-cell-group>
+        </div>
+        <div class="main_bottom">
+            <van-button type="primary" @click="save">确定</van-button>
+        </div>
+    </div>
+    <script src=" ./config/bodyjs.js"> </script>
+    <script src="./js/withdrawal/index.js">
+    </script>
+</body>
+
+</html>

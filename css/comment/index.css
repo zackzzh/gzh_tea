@@ -1,0 +1,52 @@
+.main_div {
+  text-align: center;
+}
+.main_div .comment_title {
+  margin: .133333rem 0;
+  font-family: Source Han Sans CN;
+  font-size: .586667rem;
+  font-weight: 500;
+  color: #333333;
+}
+.main_div .comment_subtitle {
+  font-family: Source Han Sans CN;
+  font-size: .4rem;
+  font-weight: 500;
+  color: #333333;
+}
+.main_div .comment_img {
+  margin: .48rem 0 .133333rem 0;
+}
+.main_div .comment_name {
+  font-size: .373333rem;
+  font-family: Source Han Sans CN;
+  color: #333333;
+  font-weight: 400;
+}
+.main_div .comment_title2 {
+  font-size: .373333rem;
+  font-family: Source Han Sans CN;
+  color: #333333;
+  font-weight: 400;
+  margin: .8rem 0 .533333rem 0;
+}
+.main_div .van-rate__item {
+  margin: 0 .266667rem;
+}
+.main_div .input_group {
+  margin: .453333rem .533333rem;
+}
+.main_div .input_group .van-cell {
+  background: #F5F5F5;
+}
+.main_div .comment_btn {
+  padding: 0 30%;
+  margin-top: .266667rem;
+  border: none;
+  border-radius: .586667rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  font-size: .4rem;
+  line-height: .4rem;
+  background: #007D7B;
+}

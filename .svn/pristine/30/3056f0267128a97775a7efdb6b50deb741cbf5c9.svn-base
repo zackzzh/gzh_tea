@@ -1,0 +1,144 @@
+new Vue({
+    el: '#main_div',
+    data() {
+        return {
+            indexData,
+            value: null,
+            data: {},
+            active: 0
+        }
+    },
+    created() {
+        $myAPi.index().then((res) => {
+            this.data = res.data
+        })
+        // 获取code，并传给后端
+        const searchStr = window.location.search
+        if (searchStr) {
+            const searchRegex = /\w+/g
+            const searchArr = searchStr.match(searchRegex)[1]
+            // 登录获取token
+            $api.login({
+                code: searchArr
+            }).then(res => {
+                if (res.state == 1) {
+                    console.log("searchStr存在:", res);
+                    sessionStorage.setItem("TOKEN", res.data.token)
+                    sessionStorage.setItem("unique_key", res.data.unique_key)
+                }
+            })
+        } else {
+            if (TOKEN_KEY == null) {
+                $api.wechat()
+            }
+        }
+    },
+    methods: {
+
+        /**
+         * 轮播图跳转
+         * @param {*} val 
+         */
+        onSwipe(val) {
+            if (val.is_page_jump === "1") {
+                window.location.href = val.jump_url
+            }
+        },
+        /**
+         * 搜索跳转
+         * @param {*} val 
+         */
+        onSearch(val) {
+            var value = {
+                type: 'search',
+                good_name: val,
+            }
+            sessionStorage.setItem("custom", JSON.stringify(value))
+            $go({
+                path: 'custom'
+            })
+        },
+        /**
+         * 跳转至材质分类和行业分类
+         * @param {*} val 
+         */
+        onItem(val) {
+            let pathName = val.path
+            var value = {
+                type: val.path
+            }
+            if (val.path.includes("industry")) {
+                pathName = "industry"
+            }
+            if (val.path.includes("material")) {
+                pathName = "material"
+            }
+            if (val.path.includes("custom")) {
+                sessionStorage.setItem("custom", JSON.stringify(value))
+            } else {
+                sessionStorage.setItem("nextPath", JSON.stringify(value))
+            }
+            $go({
+                path: pathName,
+            })
+        },
+        /**
+         * 底部导航跳转
+         * @param {*} val 
+         */
+        onChange(val) {
+            switch (val) {
+                case 0:
+                    $go({
+                        path: 'index'
+                    })
+                    break;
+                case 1:
+                    window.location.href = 'https://h5.youzan.com/v2/feature/EaOk1vhSgY'
+                    break;
+                case 2:
+                    $go({
+                        path: 'shopping'
+                    })
+                    break;
+                case 3:
+                    $go({
+                        path: 'mine'
+                    })
+                    break;
+            }
+        },
+        /**
+         * 商品跳转至详情页
+         * @param {*} val 
+         * @param {*} id 
+         */
+        onClick(val, id) {
+            var value = {
+                id: id
+            }
+            sessionStorage.setItem('info', JSON.stringify(value))
+            $go({
+                path: val
+            })
+        },
+        /**
+         *跳转 新闻详情
+         */
+        news(item) {
+            var val = {
+                id: item.id
+            }
+            sessionStorage.setItem("news_id", JSON.stringify(val))
+            $go({
+                path: 'news_detail'
+            })
+        },
+        //跳转新闻列表
+        onMoreNews() {
+            $go({
+                path: 'news_list'
+            })
+        }
+    }
+});

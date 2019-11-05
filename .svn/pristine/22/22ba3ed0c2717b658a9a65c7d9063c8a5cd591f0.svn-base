@@ -1,0 +1,146 @@
+.box_type_div {
+  margin-bottom: 1.173333rem;
+  padding: .346667rem 0;
+}
+.box_type_div .threeStep-detail {
+  background: #ffffff;
+  box-shadow: 0px 0px 35px 0px rgba(18, 46, 116, 0.1);
+  border-radius: .133333rem;
+  margin: 0 .32rem;
+  padding: .533333rem .466667rem;
+  padding-top: 0px;
+  color: #9E918F;
+  margin-bottom: .266667rem;
+}
+.box_type_div .threeStep-detail .van-cell {
+  padding: .133333rem 0px;
+  line-height: 1.04rem;
+}
+.box_type_div .threeStep-detail .detail-title {
+  font-size: .373333rem;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #007d7b;
+  line-height: 1.066667rem;
+  height: 1.066667rem;
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid #D2E1EA;
+}
+.box_type_div .threeStep-detail .detail-title span {
+  margin-left: .133333rem;
+  font-size: .253333rem;
+  color: #DE0035;
+  font-weight: 400;
+}
+.box_type_div .threeStep-detail .detail-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .266667rem;
+}
+.box_type_div .threeStep-detail .detail-upload .upload-left {
+  width: 4.666667rem;
+  height: 2.933333rem;
+  margin-right: .2rem;
+}
+.box_type_div .threeStep-detail .detail-upload .upload-left .van-image__img {
+  width: 4.666667rem;
+  height: 2.933333rem;
+}
+.box_type_div .threeStep-detail .detail-upload .upload-right .right-button {
+  width: 3.733333rem;
+  height: .746667rem;
+  line-height: .746667rem;
+  margin-bottom: .4rem;
+  color: #007D7B;
+  border: 1px solid #007D7B;
+}
+.box_type_div .threeStep-detail .detail-upload .upload-right .right-content {
+  font-size: .213333rem;
+}
+.box_type_div .threeStep-detail .detail-upload .loadimg_exit {
+  display: flex;
+  align-items: center;
+}
+.box_type_div .threeStep-detail .detail-upload .loadimg_exit .van-uploader__wrapper {
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.box_type_div .threeStep-detail .detail-command {
+  font-size: .373333rem;
+  color: #007D7B;
+  padding-top: .266667rem;
+}
+.box_type_div .threeStep-detail .detail-command span {
+  font-size: .32rem;
+  color: #404040;
+}
+.box_type_div .van-checkbox .van-checkbox__label {
+  color: #fff !important;
+  font-size: .293333rem;
+}
+.box_type_div .van-checkbox__icon--checked .van-icon {
+  background: #005E59;
+  border-color: #005E59;
+}
+.box_type_div .box_type_cell_right_icon {
+  margin-left: .293333rem;
+  color: #007D7B;
+}
+.box_type_div .threeStep-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.box_type_div .threeStep-button .button-left {
+  display: flex;
+  align-items: center;
+  width: 6.426667rem;
+  height: 1.173333rem;
+  background: #74B6B5;
+  font-size: .293333rem;
+  text-align: center;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #fff;
+  padding: 0px .133333rem;
+}
+.box_type_div .threeStep-button .button-left a {
+  color: #005E59;
+}
+.box_type_div .threeStep-button .button-right {
+  width: 3.56rem;
+  height: 1.173333rem;
+  line-height: 1.066667rem;
+  text-align: center;
+  background: #007d7b;
+  font-size: .4rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+}
+.box_type_div input::-webkit-input-placeholder,
+.box_type_div textarea::-webkit-input-placeholder {
+  color: #808080;
+  font-size: .266667rem;
+}
+.box_type_div input:-moz-placeholder,
+.box_type_div textarea:-moz-placeholder {
+  color: #808080;
+  font-size: .266667rem;
+}
+.box_type_div input::-moz-placeholder,
+.box_type_div textarea::-moz-placeholder {
+  color: #808080;
+  font-size: .266667rem;
+}
+.box_type_div input:-ms-input-placeholder,
+.box_type_div textarea:-ms-input-placeholder {
+  color: #808080;
+  font-size: .266667rem;
+}

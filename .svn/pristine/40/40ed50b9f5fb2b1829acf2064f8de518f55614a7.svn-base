@@ -1,0 +1,104 @@
+html {
+    background : #F7F7F7;
+    align-items: center;
+    flex       : 1;
+    min-height : calc(100vh);
+    [v-cloak] {
+        display: none;
+    }
+    .main_div {
+        // height     : calc(100vh);
+        padding-bottom: .666667rem;
+
+        // 列表整体样式
+        .radio_group {
+            padding: .533333rem .133333rem;
+
+            .cell_main {
+                margin-bottom: .24rem;
+                padding      : .4rem .266667rem;
+                box-shadow   : 0 0 .453333rem 0 rgba(18, 46, 116, 0.1);
+                border-radius: .133333rem;
+
+                .cell_div {
+                    .cell_title {
+                        font-size  : .453333rem;
+                        font-family: PingFang SC;
+                        font-weight: 500;
+
+                        .cell_name {
+                            letter-spacing: .026667rem;
+                        }
+
+                        .cell_phone {
+                            color: #444444;
+                        }
+                    }
+
+                    .cell_subtitle {
+                        margin     : .266667rem 0;
+                        font-family: PingFang SC;
+                        font-size  : .346667rem;
+                        font-weight: 500;
+                        color      : #888888;
+                    }
+                }
+
+                .cell_radio_row {
+                    .cell_radio {
+                        // .van-radio__icon--checked {
+                        //     background-color: #007D7B;
+                        //     border-color    : #007D7B;
+                        //     border-radius   : 50%;
+                        // }
+
+                        .van-icon {
+                            background-color: transparent;
+                            border-color    : #007D7B;
+                        }
+
+                        .van-radio__label {
+                            font-family: PingFang SC;
+                            font-size  : .32rem;
+                            font-weight: 500;
+                            color      : #007D7B;
+                        }
+                    }
+
+                    .cell_radio_btn_group {
+                        .cell_radio_btn {
+                            height     : auto;
+                            margin-left: .266667rem;
+                            padding    : .133333rem .266667rem;
+                            font-family: PingFang SC;
+                            font-size  : .266667rem;
+                            font-weight: 500;
+                            color      : #888888;
+                            line-height: .266667rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 按钮样式
+        .add_btn_div {
+            position     : fixed;
+            bottom       : 0;
+            left         : 0;
+            right        : 0;
+            // margin-top: .666667rem;
+            // padding   : 0 .533333rem;
+
+            .add_btn {
+                width        : 100%;
+                border       : none;
+                font-family  : PingFang SC;
+                font-size    : .48rem;
+                font-weight  : 500;
+                background   : #74B6B5;
+                // border-radius: .133333rem;
+            }
+        }
+    }
+}

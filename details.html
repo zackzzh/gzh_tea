@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-商品详情</title>
+    <link rel="stylesheet" href="./css/details/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar left-arrow @click-left="onClickLeft">
+            <van-row slot="title" type="flex" justify="center" align="center">
+                <van-col>
+                    <div :class="{header_title_active:headerActive}" class="header_title" @click="onHeader(true)">商品
+                    </div>
+                </van-col>
+                <van-col>
+                    <div :class="{header_title_active:!headerActive}" class="header_title" @click="onHeader(false)">详情
+                    </div>
+                </van-col>
+            </van-row>
+        </van-nav-bar>
+
+        <!-- 轮播 -->
+        <van-swipe :autoplay="3000">
+            <van-swipe-item v-for="(image, index) in images" :key="index">
+                <van-image fit="contain" width="100%" height="auto" :src="image" />
+            </van-swipe-item>
+        </van-swipe>
+        <!-- 卡片内容 -->
+        <div class="card_div">
+            <div class="card_title">东莞CY-35茶叶100g/125g/150g单个装通用定制圆筒盒</div>
+            <van-row class="card_rate_row" type="flex" align="center">
+                <div class="card_rate_title">评价</div>
+                <van-rate v-model="rateVal" allow-half readonly />
+            </van-row>
+            <div class="card_subtitle">茶叶</div>
+        </div>
+        <div class="details_btn_div">
+            <van-button class="details_btn" type="primary" @click="onClickBtn">在线报价</van-button>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/details/index.js"></script>
+</body>
+
+</html>

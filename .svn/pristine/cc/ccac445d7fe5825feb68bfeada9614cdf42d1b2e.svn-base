@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-首页</title>
+    <link rel="stylesheet" href="./css/index/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <!-- <van-nav-bar title="义统定制"></van-nav-bar> -->
+        <!--  -->
+        <div class="banner_div">
+            <!-- 搜索框 -->
+            <van-search class="search_bar_row" v-model="value" placeholder="请输入搜索关键词" shape="round" @search="onSearch"
+                background="transparent">
+            </van-search>
+            <!-- 轮播 -->
+            <van-swipe :autoplay="3000">
+                <van-swipe-item v-for="(image, index) in data.banner_list" :key="index" @click="onSwipe(image)">
+                    <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + image.image" />
+                </van-swipe-item>
+            </van-swipe>
+        </div>
+        <!-- 分类选项 -->
+        <van-row class="index_item_row" type="flex" justify="center" align="center">
+            <van-col class="index_item_col" span="6" v-for="(val, index) in indexData.itemArr" :key="index">
+                <div @click="onItem(val)">
+                    <van-image fit="contain" width="100%" height="auto" :src="val.url"></van-image>
+                    <div class="item_title">{{val.title}}</div>
+                </div>
+            </van-col>
+        </van-row>
+        <div class="index_line"></div>
+        <div class="more_news">
+            <span @click="onMoreNews">更多 ></span>
+        </div>
+        <!-- 头条 -->
+        <van-row class="news_row" type="flex" justify="center" align="center">
+            <van-col span="3" class="news_col_img">
+                <van-image fit="contain" width="100%" height="auto" src="./img/index/new.png"></van-image>
+            </van-col>
+            <van-col span="21" class="news_items_col">
+                <van-row class="news_item_row" v-for="(item, index) in data.recomm_news" :key="index">
+                    <van-col class="news_item_col" span="24">
+                        <span @click="news(item)">{{item.title}}</span>
+                    </van-col>
+                </van-row>
+            </van-col>
+        </van-row>
+        <van-row class="newbie_row" type="flex" justify="center" align="center">
+            <van-col span="12" class="newbie_left">
+                <van-image fit="contain" width="100%" height="auto" src="./img/index/newbie01.png"></van-image>
+            </van-col>
+            <van-col span="12" class="newbie_right">
+                <van-image fit="contain" width="100%" height="auto" src="./img/index/newbie02.png"></van-image>
+            </van-col>
+        </van-row>
+        <div class="recommend_title">
+            推荐定制
+            <!-- <span class="iconfont icon-jiantou1"></span> -->
+        </div>
+        <van-row class="card_row" type="flex" align="center" style="flex-wrap:wrap;">
+            <van-col class="card_col" span=12 v-for="(item,index) in data.recomm_list" :key="index">
+                <div class="card_div">
+                    <van-image fit="contain" width="100%" height="auto" :src="API_BASE_URL + item.cover_image"
+                        @click="onClick('info',item.id)">
+                    </van-image>
+                    <van-row>
+                        <van-col class="main_div_top">{{item.goods_name}}</van-col>
+                    </van-row>
+                    <van-row class="price_row" type="flex" align="center">
+                        <van-col class="price_col" span="14">
+                            {{item.price}}<span>元/套</span>
+                        </van-col>
+                        <van-col class="price_btn_col" span="10">
+                            <van-button class="price_btn" type="primary" @click="onClick('info',item.id)">立即订制
+                            </van-button>
+                        </van-col>
+                    </van-row>
+                </div>
+            </van-col>
+        </van-row>
+        <van-tabbar v-model="active" inactive-color="#1C1F1F" @change="onChange">
+            <van-tabbar-item icon="wap-home">首页</van-tabbar-item>
+            <van-tabbar-item icon="bag-o">现货商城</van-tabbar-item>
+            <van-tabbar-item icon="shopping-cart-o">购物车</van-tabbar-item>
+            <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+        </van-tabbar>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/index/data.js"></script>
+    <script src="./js/index/index.js"></script>
+</body>
+
+</html>

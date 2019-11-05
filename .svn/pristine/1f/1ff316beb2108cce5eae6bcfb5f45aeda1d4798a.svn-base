@@ -1,0 +1,57 @@
+html {
+    background : #f4f4f4;
+    align-items: center;
+    flex       : 1;
+    min-height : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+        // height     : calc(100vh);
+        padding-bottom: .666667rem;
+        margin        : 0px !important;
+        height        : 50px;
+        line-height   : 50px;
+        padding       : 0px 10px;
+
+        .main_div_main {
+            background : #fff;
+            display    : flex;
+            align-items: center;
+        }
+
+        .title {
+            font-size : .32rem;
+            width     : 1.6rem;
+            text-align: center;
+        }
+
+        .van-field__label {
+            width: 4.266667rem;;
+        }
+
+        margin: .666667rem;
+
+        .van-radio-group {
+            width: 100%;
+        }
+
+        .main_div_button {
+            position: fixed;
+            bottom  : .533333rem;
+            width: 95%;
+        }
+
+        .van-button {
+            margin-top: .533333rem;
+            width     : 100%;
+        }
+
+        .dialog_radio {
+            display        : flex;
+            justify-content: center;
+        }
+    }
+}

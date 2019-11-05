@@ -1,0 +1,34 @@
+<van-col class="card_col" span=12>
+    <div class="card_div">
+        <van-image fit="contain" width="100%" height="auto" src="../../../img/index/commodity02.png"></van-image>
+        <van-row class="card_title_row" type="flex" align="bottom">
+            <van-col class="card_title_col" span="12">
+                <div>
+                    起订量：1000套
+                </div>
+                <div>
+                    容量：250克
+                </div>
+                <div>
+                    材质：罐体生铁
+                </div>
+            </van-col>
+            <van-col class="card_title_col" span="12">
+                <div>
+                    规格：2个装
+                </div>
+                <div>
+                    包装：纸盒
+                </div>
+            </van-col>
+        </van-row>
+        <van-row class="price_row" type="flex" align="center">
+            <van-col class="price_col" span="14">
+                700<span>元/套</span>
+            </van-col>
+            <van-col class="price_btn_col" span="10">
+                <van-button class="price_btn" type="primary">立即订制</van-button>
+            </van-col>
+        </van-row>
+    </div>
+</van-col>

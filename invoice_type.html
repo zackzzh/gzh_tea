@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-添加发票</title>
+    <link rel="stylesheet" href="./css/invoice_type/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="发票管理" left-arrow @click-left="onClickLeft">
+        </van-nav-bar>
+        <div class="main_div_main">
+            <div class="title">发票类型:</div>
+            <van-radio-group v-model="radio" @change="changeRadio">
+                <van-row class="dialog_row" type="flex" justify="center" align="center">
+                    <van-col span="8">
+                        <van-radio class="dialog_radio" name="1">普发-个人</van-radio>
+                    </van-col>
+                    <van-col span="8">
+                        <van-radio class="dialog_radio" name="2">普法-企业</van-radio>
+                    </van-col>
+                    <van-col span="8">
+                        <van-radio class="dialog_radio" name="3">专用发票</van-radio>
+                    </van-col>
+                </van-row>
+            </van-radio-group>
+        </div>
+        <div class="main_div_radio" v-show="radio==1">
+            <van-cell-group>
+                <van-field label="发票抬头" v-model="forData.payable"></van-field>
+            </van-cell-group>
+        </div>
+        <div class="main_div_radio" v-show="radio==2">
+            <van-cell-group>
+                <van-field label="发票抬头" v-model="forData.payable"></van-field>
+                <van-field label="企业税号" v-model="forData.duty_paragraph"></van-field>
+            </van-cell-group>
+        </div>
+        <div class="main_div_radio" v-show="radio==3">
+            <van-cell-group>
+                <van-field label="发票抬头" v-model="forData.payable"></van-field>
+                <van-field label="企业税号" v-model="forData.duty_paragraph"></van-field>
+                <van-field label="企业地址" v-model="forData.address"></van-field>
+                <van-field label="联系号码" v-model="forData.contact_number"></van-field>
+                <van-field label="开户行" v-model="forData.opening_bank"></van-field>
+                <van-field label="开户账号" v-model="forData.opening_account"></van-field>
+            </van-cell-group>
+        </div>
+        <div class="main_div_button">
+            <van-button type="info" @click="save">保存</van-button>
+        </div>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/invoice_type/index.js"></script>
+</body>
+
+</html>

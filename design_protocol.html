@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设计协议</title>
+    <script src="./config/header.js"></script>
+</head>
+<style>
+    .main_div {
+        font-size: 12px;
+    }
+
+    p {
+        margin: 10px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar title="设 计 协 议" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <div style="margin:10px; text-align: right;">
+            合同号：（根据线上平台订单号生成）
+        </div>
+        <van-row style="margin: 10px">
+            <van-col :span="6">甲方:</van-col>
+            <van-col :span="6">Tel:</van-col>
+            <van-col :span="6">Fax:</van-col>
+            <van-col :span="6">邮箱:</van-col>
+        </van-row>
+        <van-row style="margin: 10px">
+            <van-col :span="6">乙方:广州市义统包装制品有限公司</van-col>
+            <van-col :span="6">Tel:020-81172988 </van-col>
+            <van-col :span="6">Fax:020-81172958</van-col>
+            <van-col :span="6">邮箱:</van-col>
+        </van-row>
+        <p>
+            甲、乙双方本着平等互利的原则，就包装产品的版面设计委托事宜，经友好协商达成以下协议，以希共同遵守：
+        </p>
+        <p>
+            一、委托设计项目
+        </p>
+        <p>
+            （一）内容：乙方向甲方提供 1 款包装产品的版面设计（具体产品规格、工艺、材质等基本信息以双方协商洽谈为准）。
+        </p>
+        <p>
+            （二）设计费用：乙方按每款 3000.00 元 （此单价不含税金）向甲方收取包装产品版面设计费，本协议总造价为
+            3000.00 元（大写 叁仟元 元整）。
+        </p>
+        <p>
+            二、版面设计与交付
+        </p>
+        <p>
+            （一）乙方须在收到甲方全额支付的设计费用后每7个工作日完成一款包装产品的版面设计（若设计2款不同产品版面则设计周期为14个工作日，以此类推……）。若甲方对乙方提交的设计初稿提出修改或重新设计意见的，修改或重新设计期限不得少于7个工作日。
+        </p>
+        <p>
+            （一）乙方须在收到甲方全额支付的设计费用后每7个工作日完成一款包装产品的版面设计（若设计2款不同产品版面则设计周期为14个工作日，以此类推……）。若甲方对乙方提交的设计初稿提出修改或重新设计意见的，修改或重新设计期限不得少于7个工作日。
+        </p>
+        <p>
+            （三）甲方在收到乙方提交的设计稿后7个工作日内未提出具体修改要求的，视为已接受乙方提交的版面设计。
+        </p>
+        <p>
+            （四）乙方以JPG格式向甲方交付完成的包装产品版面设计。
+        </p>
+        <p>
+            三、设计费用支付及知识产权保护
+        </p>
+        <p>
+            （一）本协议第一条第（二）款约定的设计费用，由甲方自签订本协议后一次性向乙方支付。
+        </p>
+        <p>
+            （二）对于乙方完成并以JPG格式向甲方提交的包装产品的版面设计，甲方向乙方订购生产任一款版面设计的，甲方已向乙方支付的该款产品的设计费用，可抵充货款，但乙方完成版面设计的时间不计入乙方生产周期内。
+        </p>
+        <p>
+            （三）无论甲方是否向乙方订购生产，乙方均有权保留设计稿的印刷源文件。乙方对于向甲方提交或传送的设计稿（包括但不限于原始稿或初稿、修改稿、定稿）享有完整的著作权，除委托乙方定购生产外，甲方不能擅自泄露、传播、使用或授权他人使用。
+        </p>
+        <p>
+            四、违约责任：本协议签订后，任何一方无正当理由不得单方面违约或提前解除本协议，否则应向守约方支付双方签订的设计费用总金额作为违约补偿金。经双方协商一致，可提前解除本协议。
+        </p>
+        <p>
+            五、本协议一式两份，双方各持一份。协议未尽事宜，双方应通过协商解决。
+        </p>
+        <p>
+            六、履行本协议过程中如遇纠纷，双方应协商解决，协商不成，则提请乙方所在地的人民法院解决。
+        </p>
+        <van-row style="margin: 10px">
+            <van-col :span="12">甲方：</van-col>
+            <van-col :span="12">乙方：广州市义统包装制品有限公司</van-col>
+        </van-row>
+        <van-row style="margin: 10px">
+            <van-col :span="12">地址：</van-col>
+            <van-col :span="12">地址：</van-col>
+        </van-row>
+        <van-row style="margin: 10px">
+            <van-col :span="12">代表人签名：</van-col>
+            <van-col :span="12">代表人签名：</van-col>
+        </van-row>
+        <van-row style="margin: 10px">
+            <van-col :span="12">年 月 日</van-col>
+            <van-col :span="12">年 月 日</van-col>
+        </van-row>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/design_protocol/index.js"></script>
+</body>
+
+</html>

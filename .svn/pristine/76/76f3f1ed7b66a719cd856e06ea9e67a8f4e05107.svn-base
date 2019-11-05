@@ -1,0 +1,27 @@
+.header_main_div {
+    margin: .32rem 0;
+
+    .header_title {
+        font-family: PingFang SC;
+        font-size: .506667rem;
+        font-weight: 500;
+        letter-spacing: 1;
+        text-align: center;
+    }
+
+    .header_icon {
+        a {
+            text-decoration: none;
+            color: #333333;
+
+            span {
+                font-size: .533333rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .header_icon_none {
+        display: none;
+    }
+}

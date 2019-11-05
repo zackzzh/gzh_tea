@@ -1,0 +1,108 @@
+body {
+    background : #f7f7f7;
+    flex       : 1;
+    align-items: center;
+    min-height : calc(100vh);
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .main_div {
+
+        // height: calc(100vh);
+
+        .header_div {
+            background-image : url("../../img/mine/bg.png");
+            background-repeat: no-repeat;
+            background-size  : 100% auto;
+
+            .nickname_row {
+                padding    : .8rem 0 .666667rem .32rem;
+                font-family: Adobe Heiti Std;
+                color      : #FFFEFE;
+
+                .nickname_col_img {
+                    margin-right: .533333rem;
+                }
+
+                .nickname_title {
+                    font-size     : .426667rem;
+                    letter-spacing: .053333rem;
+                }
+
+                .nickname_phone {
+                    font-size     : .4rem;
+                    letter-spacing: .013333rem;
+                }
+            }
+
+            .items_row {
+                margin       : 0 .32rem;
+                padding      : 0 .266667rem;
+                border-radius: .08rem;
+                background   : #FFFFFF;
+                text-align   : center;
+
+                .item_col {
+                    padding: .8rem .32rem 0 .32rem;
+
+                    .item_title {
+                        margin     : .4rem 0 .8rem 0;
+                        font-family: Microsoft YaHei;
+                        font-size  : .346667rem;
+                        font-weight: 400;
+                        color      : #009D8A;
+                    }
+                }
+            }
+        }
+
+        .app_div {
+            margin       : .32rem .32rem 1.6rem .32rem;
+            padding-top  : .4rem;
+            border-radius: .08rem;
+            background   : #FFFFFF;
+
+            .app_mian_title {
+                padding-left  : .213333rem;
+                border-left   : .106667rem solid #6D56FF;
+                font-size     : .426667rem;
+                color         : #333333;
+                letter-spacing: .026667rem;
+            }
+
+            .app_row {
+                margin-top : .133333rem;
+                padding    : 0 .133333rem;
+                font-family: Microsoft YaHei;
+                font-size  : .373333rem;
+                font-weight: 400;
+                text-align : center;
+                color      : #666666;
+
+                .app_col {
+                    padding      : .266667rem 0;
+                    border-bottom: 1px solid #E7E8ED;
+                    border-right : 1px solid #E7E8ED;
+                    font-size    : 12px;
+
+                    &:nth-child(3),
+                    &:nth-child(6) {
+                        border-right: none
+                    }
+
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(6) {
+                        border-bottom: none
+                    }
+
+                    .app_title {
+                        margin: .4rem 0 .346667rem 0;
+                    }
+                }
+            }
+        }
+    }
+}

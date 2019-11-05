@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>义统-分类</title>
+    <link rel="stylesheet" href="./css/classify/index.css" />
+    <script src="./config/header.js"></script>
+</head>
+
+<body>
+    <div id="main_div" class="main_div" v-cloak>
+        <van-nav-bar :title="headerTitle" left-arrow @click-left="onClickLeft"></van-nav-bar>
+        <!-- <van-search placeholder="请输入搜索关键词" shape="round" @search="onSearch"></van-search> -->
+        <van-row>
+            <!-- 左侧目录栏 -->
+            <van-col class="sidebar_col" span="6">
+                <van-sidebar class="sidebar_mian" v-model="sidebarActive">
+                    <van-sidebar-item class="sidebarItem" :title="item.name" v-for="(item, index) in listData"
+                        :key="index" @click="onClick(item)"></van-sidebar-item>
+                </van-sidebar>
+            </van-col>
+            <!-- 右侧列表 -->
+            <van-col class="content_col" span="18">
+                <!-- 右侧banner -->
+                <div class="content_col_img">
+                    <van-image width="100%" height="auto" :src="bannerImg"></van-image>
+                </div>
+                <div v-for="(item,index) in listChild">
+                    <!-- 目录title栏 -->
+                    <van-row class="filtrate_row" type="flex" justify="space-between" align="center">
+                        <van-col span="12">
+                            <van-row class="filtrate_title_row" type="flex" align="center">
+                                <van-col span="4">
+                                    <van-image v-if="item.icon" width="90%" height="auto" :src="API_BASE_URL+item.icon">
+                                    </van-image>
+                                </van-col>
+                                <van-col class="filtrate_title" span="12">
+                                    {{item.name}}
+                                </van-col>
+                            </van-row>
+                        </van-col>
+                        <!-- <van-col class="filtrate_title_all">
+                                全部 >
+                            </van-col> -->
+                    </van-row>
+                    <!-- 列表项 -->
+                    <van-grid :gutter="10" column-num="3">
+                        <van-grid-item v-for="value in item.child" :key="value" @click="onGrid(value)">
+                            <van-image width="100%" height="auto" :src="API_BASE_URL+value.icon"></van-image>
+                            <div class="gridItemText">{{value.name}}</div>
+                        </van-grid-item>
+                    </van-grid>
+                </div>
+            </van-col>
+        </van-row>
+    </div>
+    <script src="./config/bodyjs.js"></script>
+    <script src="./js/classify/index.js"></script>
+</body>
+
+</html>

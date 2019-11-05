@@ -1,0 +1,60 @@
+.box_type_div {
+  margin-bottom: 1.173333rem;
+  padding: .346667rem 0;
+}
+.box_type_div .van-cell-group {
+  width: 100%;
+}
+.box_type_div .van-radio__icon--checked .van-icon {
+  background: #005E59;
+  border-color: #005E59;
+}
+.box_type_div .fiveStep-detail {
+  background: #ffffff;
+  box-shadow: 0px 0px 35px 0px rgba(18, 46, 116, 0.1);
+  border-radius: .133333rem;
+  margin: 0 .32rem;
+  margin-top: .426667rem;
+  color: #000000;
+}
+.box_type_div .fiveStep-detail .detail-title {
+  height: 1.173333rem;
+  line-height: 1.173333rem;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0px .533333rem;
+}
+.box_type_div .fiveStep-detail .van-radio-group {
+  display: flex;
+  align-items: center;
+}
+.box_type_div .fiveStep-detail .van-radio-group .van-radio {
+  margin-right: .266667rem;
+}
+.box_type_div .fiveStep-detail .detail-content {
+  padding: .533333rem;
+}
+.box_type_div .fiveStep-detail .detail-content .detail-div {
+  display: flex;
+  align-items: center;
+  font-size: .346667rem;
+  margin-bottom: .133333rem;
+}
+.box_type_div .fiveStep-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.box_type_div .fiveStep-button .button-right {
+  width: 100%;
+  height: 1.173333rem;
+  line-height: 1.066667rem;
+  text-align: center;
+  background: #007d7b;
+  font-size: .4rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+}

@@ -1,0 +1,67 @@
+html {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background: #F7F7F7;
+    min-height        : calc(100vh);
+    .main_div {
+        // height: calc(100vh);
+        position: relative;
+
+        .cell_div {
+            padding: .4rem .106667rem 0 .106667rem;
+
+            .cell_item {
+                margin-bottom: .16rem;
+                border-radius: .133333rem;
+                box-shadow: 0 0 .453333rem 0 rgba(18, 46, 116, 0.1);
+            }
+        }
+
+        .logout_btn {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-family: PingFang SC;
+            font-size: .48rem;
+            font-weight: 500;
+        }
+
+        .input_group {
+            margin: .4rem .106667rem 0 .106667rem;
+            border-radius: .133333rem;
+            box-shadow: 0 0 .453333rem 0 rgba(18, 46, 116, 0.1);
+
+            .input_code {
+                border-radius: .133333rem;
+                border: none;
+                background: #74B6B5;
+            }
+
+            .van-cell {
+                &:first-child {
+                    border-radius: .133333rem .133333rem 0 0;
+                }
+
+                &:last-child {
+                    border-radius: 0 0 .133333rem .133333rem;
+                }
+            }
+        }
+
+        .bound_div {
+            margin: .4rem 0 0 0;
+            padding: 0 .106667rem;
+
+            .bound_btn {
+                width: 100%;
+                border: none;
+                background: #007D7B;
+                border-radius: .133333rem;
+                font-family: PingFang SC;
+                font-size: .48rem;
+                font-weight: 500;
+            }
+        }
+    }
+}

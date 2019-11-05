@@ -1,0 +1,221 @@
+new Vue({
+    el: '#main_div',
+    data() {
+        return {
+            data: {},
+            checked: true,
+            sum: 0,
+            number: 0,
+            parts_id: [],
+            defaultAttr: [],
+            defaultOptions: {},
+            product_sku: {},
+            min_buy_num: 0,
+        }
+    },
+    mounted() {
+        /**
+         * 获取详情数据
+         */
+        const getPathData = sessionStorage.getItem("info_sku")
+        var options = JSON.parse(getPathData)
+        this.data = options.data
+        this.min_buy_num = this.data.min_buy_num
+        const attrObj = options.data.attr
+        // 筛选attr项
+        this.filAttr(attrObj)
+    },
+    methods: {
+        shangQiao() {
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?3322fda90c7a2b64380a34c2a68bc09f";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+                // setTimeout(function () {
+                //     $('#nb_invite_ok').click();
+                // }, 6000);
+            })();
+        },
+        filAttr(val) {
+            // 初始化，表attr
+            this.defaultAttr = []
+            this.defaultOptions = val.selected_id
+            // 获取默认选中key
+            for (const optionKey in val.selected_id) {
+                if (val.selected_id.hasOwnProperty(optionKey)) {
+                    // 获取attr里面的key值
+                    for (const key in val) {
+                        if (val.hasOwnProperty(key)) {
+
+                            const keyStr = key.slice(0, (key.length - 1))
+                            if (optionKey.includes(keyStr)) {
+                                // 当前默认的id
+                                const option = val.selected_id[optionKey];
+                                const element = val[key];
+                                // 当前一横项
+                                element.defaultKey = option
+                                element.typeKey = optionKey
+                                this.defaultAttr.push(element)
+                            }
+                        }
+                    }
+                }
+            }
+            this.findSku(val.selected_id)
+        },
+
+        handle_box_types(val, item) {
+            const optionsObj = this.defaultOptions
+            for (const key in optionsObj) {
+                if (optionsObj.hasOwnProperty(key)) {
+                    optionsObj[item.typeKey] = val.id
+                }
+            }
+            $api.goodsAttr(Object.assign({
+                id: this.data.id
+            }, optionsObj)).then(res => {
+                this.filAttr(res.data)
+            })
+        },
+        findSku(ids) {
+            var sum = 0;
+            var data = this.data.sku.find((data) => {
+                for (variable in ids) {
+                    if (data[variable] == ids[variable]) {
+                        sum += 1
+                    } else {
+                        sum = 0
+                        break;
+                    }
+                }
+                if (sum == Object.keys(ids).length) {
+                    return data
+                }
+            })
+            this.product_sku = data;
+            if (data && data.id) {
+                this.data.price = Number(data.price)
+            }
+            this.changeProductNum()
+        },
+
+        onClickLeft(val) {
+            $back();
+        },
+        onClick(val) {
+            $go({
+                path: "shopping"
+            })
+        },
+        //属性点击
+        handletech(data) {
+            var sum = 0;
+            var number = 0;
+            this.parts_id = [];
+            data.checked = !data.checked
+            this.data.parts.forEach((data) => {
+                if (data.checked) {
+                    this.parts_id.push({
+                        quantity: data.min_buy_num,
+                        parts_id: data.parts_id
+                    })
+                    sum += data.min_buy_num * data.price
+                    number += data.min_buy_num
+                }
+            })
+            this.sum = sum;
+            this.number = number;
+        },
+        //配件点击
+        changeNum(item) {
+            var sum = 0;
+            var number = 0;
+            this.data.parts.forEach((data) => {
+                if (data.checked) {
+                    sum += data.min_buy_num * data.price
+                    number += data.min_buy_num
+                }
+            })
+            this.sum = sum;
+            this.number = number
+        },
+        changeProductNum() {
+            this.product_sku.overprints = this.product_sku.overprints.map((item, index) => {
+                if (index === this.product_sku.overprints.length - 1) {
+                    item.minQuantity = null
+                    item.maxQuantity = item.quantity
+                } else {
+                    item.minQuantity = this.product_sku.overprints[index].quantity
+                    item.maxQuantity = this.product_sku.overprints[index + 1].quantity
+                }
+                return item
+            })
+            console.log('this.product_sku.overprints', this.product_sku)
+            if (this.product_sku.overprints.length == 1) {
+                if (this.data.min_buy_num < this.product_sku.overprints[0].maxQuantity) {
+                    this.data.price = this.product_sku.price
+                } else {
+                    this.data.price = this.product_sku.overprints[0].price
+                }
+            } else {
+                this.product_sku.overprints.forEach((data, index) => {
+                    if (this.data.min_buy_num < this.product_sku.overprints[0].minQuantity) {
+                        this.data.price = this.product_sku.price
+                    } else {
+                        var selectVal = this.product_sku.overprints.find((data) => {
+                            if (this.data.min_buy_num >= data.minQuantity && this.data.min_buy_num < data.maxQuantity) {
+                                return data
+                            } else {
+                                return data.minQuantity == null
+                            }
+                        })
+                        this.data.price = selectVal.price
+                    }
+                })
+            }
+        },
+        onClickIcon() {
+            Toast('点击图标');
+        },
+        onClickButton() {
+            Toast('点击按钮');
+        },
+        //加入购物车
+        addCart() {
+            if (TOKEN_KEY) {
+                var data = {
+                    goods_id: this.data.id,
+                    quantity: this.data.min_buy_num,
+                    parts_id: this.parts_id
+                }
+
+                $myAPi.cartAdd(Object.assign(data, this.defaultOptions)).then((res) => {
+                    //封装公共的方法toast
+                    $toast(res);
+                })
+            } else {
+                $api.wechat()
+            }
+        },
+        //立即购买
+        onClickButton() {
+            if (TOKEN_KEY) {
+                var query = {
+                    type: 'one',
+                    goods_id: this.data.id,
+                    order_type: 0,
+                    quantity: this.data.min_buy_num,
+                    parts_id: this.parts_id
+                }
+                sessionStorage.setItem("confirmOrder", JSON.stringify(Object.assign(query, this.defaultOptions)))
+                $go({
+                    path: "confirmOrder",
+                })
+            } else {
+                $api.wechat()
+            }
+        },
+    }
+});
